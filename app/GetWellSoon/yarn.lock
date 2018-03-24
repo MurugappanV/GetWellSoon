@@ -4209,6 +4209,14 @@ react-devtools-core@3.1.0:
     shell-quote "^1.6.1"
     ws "^2.0.3"
 
+react-native-clean-project@^1.0.7:
+  version "1.0.7"
+  resolved "https://registry.yarnpkg.com/react-native-clean-project/-/react-native-clean-project-1.0.7.tgz#3e500696142770f5b8e2da71a3e23e29b0ab7706"
+
+react-native-image-crop-picker@^0.20.0:
+  version "0.20.0"
+  resolved "https://registry.yarnpkg.com/react-native-image-crop-picker/-/react-native-image-crop-picker-0.20.0.tgz#29b8df35eb17ff7ad61524ec09832f49e552427d"
+
 react-native@0.54.2:
   version "0.54.2"
   resolved "https://registry.yarnpkg.com/react-native/-/react-native-0.54.2.tgz#73786e7bf3f80b0b060ca0bfe5b192f9c2f253da"
