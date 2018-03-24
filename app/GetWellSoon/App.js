@@ -10,9 +10,12 @@ import {
   StyleSheet,
   Text,
   View,
-  TouchableOpacity
+  TouchableOpacity,
+  Image
 } from 'react-native';
-import ImagePicker from 'react-native-image-crop-picker';
+import SplashScreen from 'react-native-splash-screen';
+var ImagePicker = require('react-native-image-picker');
+// import ImagePicker from 'react-native-image-crop-picker';
 
 const instructions = Platform.select({
   ios: 'Press Cmd+R to reload,\n' +
@@ -21,22 +24,61 @@ const instructions = Platform.select({
     'Shake or press menu button for dev menu',
 });
 
-
+var options = {
+  title: 'Select Prescription',
+  customButtons: [
+    {name: 'fb', title: 'Choose Photo from Facebook'},
+  ],
+  storageOptions: {
+    skipBackup: true,
+    path: 'images'
+  }
+};
 
 type Props = {};
 export default class App extends Component<Props> {
-
+  constructor() {
+    super()
+    this.state = { avatarSource : null}
+  }
+  componentDidMount() {
+    SplashScreen.hide()
+  }
   pickImage = () => {
-    ImagePicker.openPicker({
-      width: 300,
-      height: 400,
-      cropping: true
-    }).then(image => {
-      console.log(image);
+    ImagePicker.showImagePicker(options, (response) => {
+      console.log('Response = ', response);
+    
+      if (response.didCancel) {
+        console.log('User cancelled image picker');
+      }
+      else if (response.error) {
+        console.log('ImagePicker Error: ', response.error);
+      }
+      else if (response.customButton) {
+        console.log('User tapped custom button: ', response.customButton);
+      }
+      else {
+        let source = { uri: response.uri };
+    
+        // You can also display the image using data:
+        // let source = { uri: 'data:image/jpeg;base64,' + response.data };
+    
+        this.setState({
+          avatarSource: source
+        });
+      }
     });
+    // ImagePicker.openPicker({
+    //   width: 300,
+    //   height: 400,
+    //   cropping: true
+    // }).then(image => {
+    //   console.log(image);
+    // });
   }
 
   render() {
+    console.log("in render -- " + this.state.avatarSource);
     return (
       <View style={styles.container}>
         <Text style={styles.welcome}>
@@ -47,6 +89,8 @@ export default class App extends Component<Props> {
           To get started, edit App.js
         </Text>
         </TouchableOpacity>
+
+        {!!this.state.avatarSource && <Image source={this.state.avatarSource} style={{width: 200, height : 200}} />}
         <Text style={styles.instructions}>
           {instructions}
         </Text>

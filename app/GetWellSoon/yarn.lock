@@ -4213,9 +4213,9 @@ react-native-clean-project@^1.0.7:
   version "1.0.7"
   resolved "https://registry.yarnpkg.com/react-native-clean-project/-/react-native-clean-project-1.0.7.tgz#3e500696142770f5b8e2da71a3e23e29b0ab7706"
 
-react-native-image-crop-picker@^0.20.0:
-  version "0.20.0"
-  resolved "https://registry.yarnpkg.com/react-native-image-crop-picker/-/react-native-image-crop-picker-0.20.0.tgz#29b8df35eb17ff7ad61524ec09832f49e552427d"
+react-native-splash-screen@3.0.6:
+  version "3.0.6"
+  resolved "https://registry.yarnpkg.com/react-native-splash-screen/-/react-native-splash-screen-3.0.6.tgz#c0bbf2c8ae40a313c4c7044f55e569414ff68332"
 
 react-native@0.54.2:
   version "0.54.2"
