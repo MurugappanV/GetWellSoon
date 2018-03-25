@@ -26,9 +26,7 @@ const instructions = Platform.select({
 
 var options = {
   title: 'Select Prescription',
-  customButtons: [
-    {name: 'fb', title: 'Choose Photo from Facebook'},
-  ],
+  customButtons: [],
   storageOptions: {
     skipBackup: true,
     path: 'images'
