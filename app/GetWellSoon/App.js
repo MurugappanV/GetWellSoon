@@ -14,6 +14,7 @@ import {
   Image
 } from 'react-native';
 import SplashScreen from 'react-native-splash-screen';
+import firebase from 'react-native-firebase';
 var ImagePicker = require('react-native-image-picker');
 // import ImagePicker from 'react-native-image-crop-picker';
 
@@ -32,6 +33,24 @@ var options = {
     path: 'images'
   }
 };
+
+const uploadImage = (uri, imageName, mime = 'image/jpg') => {
+  console.log("uri - ", uri)
+  return new Promise((resolve, reject) => {
+    const uploadUri = Platform.OS === 'ios' ? uri.replace('file://', '') : uri
+      const imageRef = firebase.storage().ref('posts').child(imageName)
+      imageRef.put(uploadUri, { contentType: mime })
+      .then(() => {
+        return imageRef.getDownloadURL()
+      })
+      .then((url) => {
+        resolve(url)
+      })
+      .catch((error) => {
+        reject(error)
+      })
+  })
+}
 
 type Props = {};
 export default class App extends Component<Props> {
@@ -57,7 +76,7 @@ export default class App extends Component<Props> {
       }
       else {
         let source = { uri: response.uri };
-    
+        uploadImage(response.uri, "first").then(uri => console.log("uri -- ", uri)).catch(err => console.log("err - ", err));
         // You can also display the image using data:
         // let source = { uri: 'data:image/jpeg;base64,' + response.data };
     

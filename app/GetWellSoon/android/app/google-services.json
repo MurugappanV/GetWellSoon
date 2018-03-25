@@ -1,0 +1,199 @@
+{
+  "project_info": {
+    "project_number": "957683561313",
+    "firebase_url": "https://medscan-39c06.firebaseio.com",
+    "project_id": "medscan-39c06",
+    "storage_bucket": "medscan-39c06.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:957683561313:android:1ed2f187e44f678d",
+        "android_client_info": {
+          "package_name": "com.medscan"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "957683561313-2obfsepgfnmujr6jkih96r3eb1rclsan.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.medscan",
+            "certificate_hash": "640c78405881ff85ca899115e648d4140f6c7db9"
+          }
+        },
+        {
+          "client_id": "957683561313-fjabl6h2ulflpqph60vpjglqeanhqvhq.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.medscan",
+            "certificate_hash": "e7cbc270da82f380efab406a98ef0b62e4972cbc"
+          }
+        },
+        {
+          "client_id": "957683561313-mdho9fv3ajft20l15r07v0hcna0e6qqa.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB8jcMYoCLnEh_CO1IV0Dltp4b9Eiv_tnU"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "957683561313-mdho9fv3ajft20l15r07v0hcna0e6qqa.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:957683561313:android:6cb8f4401d85e5c1",
+        "android_client_info": {
+          "package_name": "com.medsoi"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "957683561313-ulq3bo73qd5ar2a7or8mk0kkr8urllb1.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.medsoi",
+            "certificate_hash": "e4afb8b2fec4c4dd5fb210520dd7edcdef97afa4"
+          }
+        },
+        {
+          "client_id": "957683561313-n1n6sc9ma4c0d04gfjl39t1h2bmq1n68.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.medsoi",
+            "certificate_hash": "9b202d7457942fd7012eac67504a4b03184bf85c"
+          }
+        },
+        {
+          "client_id": "957683561313-4tkg0qm0lfepmtr5bhnm8kt1hjbqdnue.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.medsoi",
+            "certificate_hash": "640c78405881ff85ca899115e648d4140f6c7db9"
+          }
+        },
+        {
+          "client_id": "957683561313-c23fu6lbu4fua32379jcsead3ou87rt0.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.medsoi",
+            "certificate_hash": "e7cbc270da82f380efab406a98ef0b62e4972cbc"
+          }
+        },
+        {
+          "client_id": "957683561313-mdho9fv3ajft20l15r07v0hcna0e6qqa.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB8jcMYoCLnEh_CO1IV0Dltp4b9Eiv_tnU"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "957683561313-mdho9fv3ajft20l15r07v0hcna0e6qqa.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:957683561313:android:a9e01fc49d8533a8",
+        "android_client_info": {
+          "package_name": "com.getwellsoon"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "957683561313-a26pk5qsdllfldusvmfgm5pce5st7moj.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.getwellsoon",
+            "certificate_hash": "e4afb8b2fec4c4dd5fb210520dd7edcdef97afa4"
+          }
+        },
+        {
+          "client_id": "957683561313-o0mldoeoggjsp7qkmo1ekt6dmsd9nmas.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.getwellsoon",
+            "certificate_hash": "9b202d7457942fd7012eac67504a4b03184bf85c"
+          }
+        },
+        {
+          "client_id": "957683561313-pjpv2righ747cumtbh83636dkupfvjp3.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.getwellsoon",
+            "certificate_hash": "640c78405881ff85ca899115e648d4140f6c7db9"
+          }
+        },
+        {
+          "client_id": "957683561313-g56evhihs96a1va1cule6cgs9cddjf5b.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.getwellsoon",
+            "certificate_hash": "e7cbc270da82f380efab406a98ef0b62e4972cbc"
+          }
+        },
+        {
+          "client_id": "957683561313-mdho9fv3ajft20l15r07v0hcna0e6qqa.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB8jcMYoCLnEh_CO1IV0Dltp4b9Eiv_tnU"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "957683561313-mdho9fv3ajft20l15r07v0hcna0e6qqa.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
