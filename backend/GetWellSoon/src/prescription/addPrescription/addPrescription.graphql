@@ -1,0 +1,10 @@
+type AddPrescriptionPayload {
+  id: ID!
+}
+
+extend type Mutation {
+  addPrescription(billUrl: String,
+  isConfirmed: Boolean,
+  message: String
+  ): AddPrescriptionPayload!
+}

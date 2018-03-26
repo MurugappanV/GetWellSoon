@@ -1,5 +1,3 @@
-# The following types define the data model of the example service
-# based on which the GraphQL API is generated
 
 type User @model {
   id: ID! @isUnique
@@ -10,7 +8,6 @@ type User @model {
   name: String
   dateOfBirth: DateTime
   email: String
-
   address: String
   addressLat: String
   addressLong: String
@@ -19,31 +16,8 @@ type User @model {
   firebaseUserId: String! @isUnique
   gender: Gender
   access: AccessType @defaultValue(value: "CUSTOMER")
-  buyPrescriptionRelation: BuyPrescriptionRelation @relation(name: "UserBuyPres")
-  userLogRelation: UserLogsRelation @relation(name: "UserLogsRelation")
-  # Uncomment below - you can declare relations between models like this
-
-  # posts: [Post!]! @relation(name: "UserPosts")
-}
-
-type UserLogsRelation @model {
-  id: ID! @isUnique
-  createdAt: DateTime!
-  updatedAt: DateTime!
-  isDeleted: Boolean @defaultValue(value: "false")
-
-  user: User! @relation(name: "UserLogsRelation")
+  prescriptions: [Prescription!]! @relation(name: "UserPrescriptionRelation")
   logs: [Log!]! @relation(name: "LogsUserRelation")
-}
-
-type BuyPrescriptionRelation @model {
-  id: ID! @isUnique
-  createdAt: DateTime!
-  updatedAt: DateTime!
-  isDeleted: Boolean @defaultValue(value: "false")
-
-  customer: User! @relation(name: "UserBuyPres")
-  prescriptions: [Prescription!]! @relation(name: "BuyPrescriptions")
 }
 
 type Prescription @model {
@@ -57,9 +31,11 @@ type Prescription @model {
   amount: Float @defaultValue(value: -1)
   prescriptionUrl: String
   billUrl: String
+  customerMessage: String
+  isConfirmed: Boolean @defaultValue(value: "false")
   status: StatusType @defaultValue(value: "PLACED")
-  customerRelation: BuyPrescriptionRelation! @relation(name: "BuyPrescriptions")
-  logs: [Log!]! @relation(name: "PrescriptionLogs")
+  customer: User! @relation(name: "UserPrescriptionRelation")
+  logs: [Log!]! @relation(name: "PrescriptionLogsRelation")
 }
 
 type Log @model {
@@ -67,24 +43,32 @@ type Log @model {
   createdAt: DateTime!
   updatedAt: DateTime!
 
-  prescription: Prescription! @relation(name: "PrescriptionLogs")
+  prescription: Prescription! @relation(name: "PrescriptionLogsRelation")
   action: String
-  oldStatus: StatusType
-  newStatus: StatusType!
-  userRelation: UserLogsRelation! @relation(name: "LogsUserRelation")
+  message: String
+  status: StatusType!
+  user: User! @relation(name: "LogsUserRelation")
+}
+
+type Pharmacy @model {
+  id: ID! @isUnique
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  isDeleted: Boolean @defaultValue(value: "false")
+
+  name: String
+  drescription: String
+  address: String
+  lat: String
+  long: String
+  phoneNos: [String!]!
+  emailIds: [String!]!
+  website: String
+  noOfOrders: Int 
+  orderLabelPrefix: String
+  imageUrls: [String!]!
 
 }
-# Uncomment the model below as well
-
-# type Post @model {
-#   id: ID! @isUnique
-#   title: String!
-#
-#   # Every relation also required a back-relation (to determine 1:1, 1:n or n:m)
-#   author: User! @relation(name: "UserPosts")
-# }
-
-
 
 enum Gender {
   MALE,
@@ -105,3 +89,26 @@ enum StatusType {
     CANCELLED,
     REJECTED
 }
+
+# type UserLogsRelation @model {
+#   id: ID! @isUnique
+#   createdAt: DateTime!
+#   updatedAt: DateTime!
+#   isDeleted: Boolean @defaultValue(value: "false")
+
+#   user: User! @relation(name: "UserLogsRelation")
+#   logs: [Log!]! @relation(name: "LogsUserRelation")
+# }
+
+# type BuyPrescriptionRelation @model {
+#   id: ID! @isUnique
+#   createdAt: DateTime!
+#   updatedAt: DateTime!
+#   isDeleted: Boolean @defaultValue(value: "false")
+
+#   customer: User! @relation(name: "UserBuyPres")
+#   prescriptions: [Prescription!]! @relation(name: "BuyPrescriptions")
+# }
+
+# The following types define the data model of the example service
+# based on which the GraphQL API is generated

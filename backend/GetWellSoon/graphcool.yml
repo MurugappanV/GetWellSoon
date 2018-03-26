@@ -27,6 +27,13 @@ functions:
     type: resolver
     schema: ./src/firebase/firebaseAuthentication.graphql
 
+  addPrescription:
+    handler:
+      code:
+        src: ./src/prescription/addPrescription/addPrescription.ts
+    type: resolver
+    schema: ./src/prescription/addPrescription/addPrescription.graphql
+
   hello:
     handler:
       code: src/hello.js
