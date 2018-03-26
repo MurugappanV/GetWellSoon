@@ -4,7 +4,7 @@
  * @flow
  */
 
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import {
   Platform,
   StyleSheet,
@@ -13,8 +13,12 @@ import {
   TouchableOpacity,
   Image
 } from 'react-native';
+import {ApolloProvider} from 'react-apollo';
 import SplashScreen from 'react-native-splash-screen';
 import firebase from 'react-native-firebase';
+import client from './src/app/common/redux/apollo/client';
+import store from './src/app/common/redux/store';
+import AppContainer from './src/app/base';
 var ImagePicker = require('react-native-image-picker');
 // import ImagePicker from 'react-native-image-crop-picker';
 
@@ -52,8 +56,7 @@ const uploadImage = (uri, imageName, mime = 'image/jpg') => {
   })
 }
 
-type Props = {};
-export default class App extends Component<Props> {
+export default class App extends PureComponent {
   constructor() {
     super()
     this.state = { avatarSource : null}
@@ -97,21 +100,24 @@ export default class App extends Component<Props> {
   render() {
     console.log("in render -- " + this.state.avatarSource);
     return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>
-          Welcome to React Native!
-        </Text>
-        <TouchableOpacity onPress={this.pickImage}>
-        <Text style={styles.instructions}>
-          To get started, edit App.js
-        </Text>
-        </TouchableOpacity>
+        <ApolloProvider client={client} store={store}>
+            <AppContainer />
+        </ApolloProvider>
+    //   <View style={styles.container}>
+    //     <Text style={styles.welcome}>
+    //       Welcome to React Native!
+    //     </Text>
+    //     <TouchableOpacity onPress={this.pickImage}>
+    //     <Text style={styles.instructions}>
+    //       To get started, edit App.js
+    //     </Text>
+    //     </TouchableOpacity>
 
-        {!!this.state.avatarSource && <Image source={this.state.avatarSource} style={{width: 200, height : 200}} />}
-        <Text style={styles.instructions}>
-          {instructions}
-        </Text>
-      </View>
+    //     {!!this.state.avatarSource && <Image source={this.state.avatarSource} style={{width: 200, height : 200}} />}
+    //     <Text style={styles.instructions}>
+    //       {instructions}
+    //     </Text>
+    //   </View>
     );
   }
 }
