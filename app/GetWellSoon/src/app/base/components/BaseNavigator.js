@@ -2,10 +2,12 @@ import React, {PureComponent} from "react";
 import { StackNavigator } from "react-navigation";
 import HomeNavigator from "../../home";
 import Login from "../../login";
+import AboutUs from "../../aboutUs";
 
 const BaseNavigator = StackNavigator({
     Home: { screen: HomeNavigator },
-    MedicineDetails: { screen: Login }
+    Login: { screen: Login },
+    AboutUs: { screen: AboutUs}
 });
 
 const defaultGetStateForAction = BaseNavigator.router.getStateForAction;

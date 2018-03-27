@@ -1,11 +1,11 @@
 import React, {PureComponent} from "react";
 import {connect} from 'react-redux';
-import {View} from 'react-native';
+import HistoryUI from "../components/HistoryUI";
 
-class Order extends PureComponent {
+class History extends PureComponent {
 
     render() {
-        return <View></View>
+        return <HistoryUI/>
     }
 }
 
@@ -15,4 +15,4 @@ function mapStateToProps(state) {
     }
 }
 
-export default connect(mapStateToProps)(Order);
+export default connect(mapStateToProps)(History);

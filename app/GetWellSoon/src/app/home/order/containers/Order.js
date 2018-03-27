@@ -1,11 +1,11 @@
 import React, {PureComponent} from "react";
 import {connect} from 'react-redux';
-import {View} from 'react-native';
+import OrderUI from "../components/OrderUI";
 
-class Profile extends PureComponent {
+class Order extends PureComponent {
 
     render() {
-        return <View></View>
+        return <OrderUI/>
     }
 }
 
@@ -15,4 +15,4 @@ function mapStateToProps(state) {
     }
 }
 
-export default connect(mapStateToProps)(Profile);
+export default connect(mapStateToProps)(Order);

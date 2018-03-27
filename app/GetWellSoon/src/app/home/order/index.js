@@ -1,3 +1,3 @@
-import Order from "./components/Order";
+import Order from "./containers/Order";
 
 export default Order
