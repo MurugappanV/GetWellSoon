@@ -7,6 +7,8 @@ export const fullWidth = Dimensions.get('window').width;
 export const width80pc = fullWidth * 0.5;
 export const statusBarHeight = 23;
 export const headerHeight = 52;
+export const tabBarHeight = 50;
+export const tabFullHeight = fullHeight - headerHeight - statusBarHeight - tabBarHeight;
 
 const fonts = StyleSheet.create({
     default: {
@@ -39,7 +41,7 @@ const sizes = StyleSheet.create({
         width: 40
     },
     tabBar: {
-        height: 50,
+        height: tabBarHeight,
         width: fullWidth
     },
     tabImage: {
@@ -49,6 +51,9 @@ const sizes = StyleSheet.create({
     bigImage: {
         height: width80pc,
         width: width80pc
+    },
+    tabContainer: {
+        minHeight: tabFullHeight
     }
 });
 
@@ -58,6 +63,12 @@ export const basicCompStyles = StyleSheet.create({
     },
     bgBaseColorLight: {
         backgroundColor: colors.BG_BASE_COLOR_LIGHT
+    },
+    normalTextColor: {
+        color: colors.NORAML_TEXT_COLOR
+    },
+    darkTextColor: {
+        color: colors.DARK_TEXT_COLOR
     },
 
 
@@ -73,6 +84,11 @@ export const basicCompStyles = StyleSheet.create({
     flexColumnCC: {
         flexDirection: 'column', 
         justifyContent: 'center', 
+        alignItems: 'center'
+    },
+    flexColumnSaC: {
+        flexDirection: 'column', 
+        justifyContent: 'space-around',
         alignItems: 'center'
     },
     flexRowNC: {
@@ -94,6 +110,9 @@ export const basicCompStyles = StyleSheet.create({
     },
     defaultElevation: {
         elevation: 5
+    },
+    seperateItemPadding: {
+        paddingTop: 20
     }
 });
 
@@ -134,18 +153,25 @@ export const basicStyles = {
         basicCompStyles.flexRowNC,
         basicCompStyles.defaultPadding
     ],
+    tabContainerInsideView: [
+        sizes.tabContainer,
+        basicCompStyles.flexColumnCC,
+        basicCompStyles.defaultPadding
+    ],
     headerTitle: [
         basicCompStyles.fullSize,
         basicCompStyles.aliginContentC,
         basicCompStyles.defaultPaddingL
     ],
     textBig: [
-        compStyles.mainHeaderText,
+        basicCompStyles.darkTextColor,
+        basicCompStyles.seperateItemPadding,
         compStyles.mainHeaderTextBig,
         fonts.default
     ],
     textSmall: [
-        compStyles.mainHeaderText,
+        basicCompStyles.normalTextColor,
+        basicCompStyles.seperateItemPadding,
         compStyles.mainHeaderTextSmall,
         fonts.default
     ],

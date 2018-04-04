@@ -7,7 +7,7 @@ class HistoryUI extends PureComponent {
     render() {
         return <View style={basicStyles.tabContainer}>
             <Image style={basicStyles.bigImage} source={require('../../../../../assets/images/empty.png')} />
-            <Text style={[basicStyles.textSmall, {paddingTop: 20}]}>No orders yet</Text>
+            <Text style={[basicStyles.textSmall]}>No orders yet</Text>
         </View>
     }
 }
