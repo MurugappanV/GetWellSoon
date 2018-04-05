@@ -1,6 +1,17 @@
 var ImagePicker = require('react-native-image-picker');
+import { Platform } from 'react-native';
+import firebase from 'react-native-firebase';
 
-pickImage = () => {
+var options = {
+    title: 'Select Prescription',
+    customButtons: [],
+    storageOptions: {
+        skipBackup: true,
+        path: 'images'
+    }
+};
+
+export function pickImage() {
     ImagePicker.showImagePicker(options, (response) => {
         console.log('Response = ', response);
         
@@ -19,9 +30,7 @@ pickImage = () => {
             // You can also display the image using data:
             // let source = { uri: 'data:image/jpeg;base64,' + response.data };
         
-            this.setState({
-            avatarSource: source
-            });
+            // callBack(source);
         }
     });
 }
