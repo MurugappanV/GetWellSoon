@@ -3,6 +3,7 @@ package com.getwellsoon;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import io.invertase.firebase.auth.RNFirebaseAuthPackage;
 import io.invertase.firebase.RNFirebasePackage;
 import io.invertase.firebase.storage.RNFirebaseStoragePackage;
 import com.imagepicker.ImagePickerPackage;
@@ -30,6 +31,7 @@ public class MainApplication extends Application implements ReactApplication {
           new MainReactPackage(),
             new RNFirebasePackage(),
             new RNFirebaseStoragePackage(),
+            new RNFirebaseAuthPackage(),
             new ImagePickerPackage(),
             new SplashScreenReactPackage()
             // new PickerPackage()

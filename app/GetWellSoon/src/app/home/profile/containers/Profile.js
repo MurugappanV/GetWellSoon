@@ -5,7 +5,7 @@ import ProfileUI from "../components/ProfileUI";
 class Profile extends PureComponent {
 
     render() {
-        return <ProfileUI/>
+        return <ProfileUI navigation={this.props.navigation}/>
     }
 }
 

@@ -54,7 +54,10 @@ const sizes = StyleSheet.create({
     },
     tabContainer: {
         minHeight: tabFullHeight
-    }
+    },
+    defaultInputHeight: {
+        height: 40
+    },
 });
 
 export const basicCompStyles = StyleSheet.create({
@@ -86,6 +89,10 @@ export const basicCompStyles = StyleSheet.create({
         justifyContent: 'center', 
         alignItems: 'center'
     },
+    flexColumnCN: {
+        flexDirection: 'column', 
+        justifyContent: 'center',
+    },
     flexColumnSaC: {
         flexDirection: 'column', 
         justifyContent: 'space-around',
@@ -97,10 +104,20 @@ export const basicCompStyles = StyleSheet.create({
     },
     aliginContentC: {
         alignContent: 'center'
+    }, 
+    aliginSelfC: {
+        alignSelf: 'center'
+    },
+    alignTextCenter: {
+        textAlign: 'center'
     },
 
     defaultPadding: {
         padding: 10
+    },
+    defaultMarginTB: {
+        marginTop: 10,
+        marginBottom: 10
     },
     defaultPaddingSmall: {
         padding: 5
@@ -136,6 +153,9 @@ export const compStyles = StyleSheet.create({
     mainHeaderTextSmall: {
         fontSize: 16
     },
+    mainHeaderTextSmaller: {
+        fontSize: 12
+    },
 });
 
 export const basicStyles = {
@@ -166,6 +186,7 @@ export const basicStyles = {
     textBig: [
         basicCompStyles.darkTextColor,
         basicCompStyles.seperateItemPadding,
+        basicCompStyles.alignTextCenter,
         compStyles.mainHeaderTextBig,
         fonts.default
     ],
@@ -175,12 +196,23 @@ export const basicStyles = {
         compStyles.mainHeaderTextSmall,
         fonts.default
     ],
-    mainHeaderTextBig: [
+    textInputSmall: [
+        basicCompStyles.darkTextColor,
+        compStyles.mainHeaderTextSmall,
+        sizes.defaultInputHeight,
+        fonts.default
+    ],
+    textSmaller: [
+        basicCompStyles.normalTextColor,
+        compStyles.mainHeaderTextSmaller,
+        fonts.default
+    ],
+    textWhiteBig: [
         compStyles.mainHeaderTextBold,
         compStyles.mainHeaderTextBig,
         fonts.default
     ],
-    mainHeaderTextSmall: [
+    textWhiteSmall: [
         compStyles.mainHeaderTextBold,
         compStyles.mainHeaderTextSmall,
         fonts.default

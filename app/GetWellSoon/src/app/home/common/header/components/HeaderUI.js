@@ -12,8 +12,8 @@ class HeaderUI extends PureComponent {
                     <Image style={basicStyles.headerImage} source={require('../../../../../../assets/images/logo.png')} />
                 </TouchableOpacity>
                 <TouchableOpacity style={basicStyles.headerTitle} onPress={() => navigate("AboutUs")}>
-                    <Text style={basicStyles.mainHeaderTextBig}>G
-                        <Text style={basicStyles.mainHeaderTextSmall}>ET WELL SOON</Text>
+                    <Text style={basicStyles.textWhiteBig}>G
+                        <Text style={basicStyles.textWhiteSmall}>ET WELL SOON</Text>
                     </Text>
                 </TouchableOpacity>
             </View>

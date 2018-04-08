@@ -10,7 +10,7 @@ class OrderUI extends PureComponent {
         return <View style={basicStyles.tabContainer}>
             <ScrollView style={[basicCompStyles.fullSize]}>
                 <View style={[basicStyles.tabContainerInsideView]}>
-                    <Text style={[basicStyles.textBig, {textAlign: 'center'}]}>Buying medicine is now easier than ever!!!</Text>
+                    <Text style={basicStyles.textBig}>Buying medicine is now easier than ever!!!</Text>
                     <View style={[basicCompStyles.flexColumnCC, basicCompStyles.fullSize]}>
                         <TouchableOpacity onPress={pickImage}>
                             <Image style={[basicStyles.bigImage]} source={require('../../../../../assets/images/photo.png')}/>
