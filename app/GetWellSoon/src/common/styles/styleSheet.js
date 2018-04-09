@@ -111,6 +111,9 @@ export const basicCompStyles = StyleSheet.create({
     alignTextCenter: {
         textAlign: 'center'
     },
+    alignTextRight: {
+        textAlign: 'right'
+    },
 
     defaultPadding: {
         padding: 10

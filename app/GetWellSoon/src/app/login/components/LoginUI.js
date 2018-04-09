@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import { View, Button, Text, TextInput, Image } from 'react-native';
 import firebase from 'react-native-firebase';
 import Toast from 'react-native-simple-toast';
-import PhoneNumberInput from "../components/PhoneNumberInput";
+import PhoneNumberInput from "./PhoneNumberInput";
+import VerificationCodeInput from "./VerificationCodeInput";
 import { basicCompStyles } from '../../../common/styles/styleSheet';
 
 export default class LoginUI extends Component {
@@ -137,28 +138,38 @@ export default class LoginUI extends Component {
     }
 
     renderMessage = (message) => {
-        if (!!message) Toast.show(message, Toast.LONG)
+        if (!!message) {
+            Toast.show(message, Toast.LONG)
+            this.setState({
+                message: null,
+            });
+        }
+
     }
 
     componentWillReceiveProps() {
+        if(!isSignOut && graphcoolTokenStatus == 2) {
+            navigation.goBack();
+        }
         if (this.props.graphcoolTokenStatus == -1) {
             this.setState({
                 message: 'Unable to get user details',
                 confirmResult: null,
             });
         }
+        this.renderMessage(message);
     }
 
     render() {
         const { confirmResult, message, isSignOut } = this.state;
-        const { children, userPhoneNumber, graphcoolTokenStatus } = this.props;
-        this.renderMessage(message)
+        const { children, userPhoneNumber, graphcoolTokenStatus, navigation } = this.props;
+        
         console.log("in render" + `--${isSignOut}--${graphcoolTokenStatus}`)
         return (
             <View style={basicCompStyles.fullSize}>
                 {(isSignOut || graphcoolTokenStatus != 2) && !confirmResult && <PhoneNumberInput signIn={this.signIn} phoneNumber={userPhoneNumber} />}
-                {(isSignOut || graphcoolTokenStatus != 2) && confirmResult && <View/>}
-                {!isSignOut && graphcoolTokenStatus == 2 && <LoginDetail signOut={this.signOut} navigation={this.props.navigation}></LoginDetail>}
+                {(isSignOut || graphcoolTokenStatus != 2) && confirmResult && <VerificationCodeInput  confirmCode={this.confirmCode} resendCode={this.resendCode} changeNumber={this.changeNumber}/>}
+                {/* {!isSignOut && graphcoolTokenStatus == 2 && <LoginDetail signOut={this.signOut} navigation={this.props.navigation}></LoginDetail>} */}
             </View>
         );
     }
