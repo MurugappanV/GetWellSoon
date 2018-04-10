@@ -3,11 +3,13 @@ import { StackNavigator } from "react-navigation";
 import HomeNavigator from "../../home";
 import Login from "../../login";
 import AboutUs from "../../aboutUs";
+import UserDetails from "../../userDetail";
 
 const BaseNavigator = StackNavigator({
     Home: { screen: HomeNavigator },
     Login: { screen: Login },
-    AboutUs: { screen: AboutUs}
+    AboutUs: { screen: AboutUs},
+    Details: { screen: UserDetails},
 });
 
 const defaultGetStateForAction = BaseNavigator.router.getStateForAction;

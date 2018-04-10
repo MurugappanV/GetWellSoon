@@ -17,13 +17,12 @@ export default class LoginUI extends Component {
         this.confirmCode = this.confirmCode.bind(this)
         this.changeNumber = this.changeNumber.bind(this)
         this.resendCode = this.resendCode.bind(this)
+        this.navigate = this.navigate.bind(this)
         console.log("in const")
         console.log("in rec props")
         if (firebase.auth().currentUser) {
             console.log("has user")
-            const {
-                params
-            } = props.navigation.state;
+            const { params } = props.navigation.state;
             if (params && params.isSignOut) {
                 console.log("has signing out")
                 this.signOut(true);
@@ -31,14 +30,13 @@ export default class LoginUI extends Component {
             }
         }
         this.state = {
-            message: null,
             confirmResult: null,
             isSignOut: isSignOut,
         };
+        this.navigate(isSignOut, props.graphcoolTokenStatus)
     }
 
     componentDidMount() {
-        console.log("in mount")
         this.unsubscribe = firebase.auth().onAuthStateChanged((user) => {
             if (user) {
                 user.getIdToken(false).then(token => {
@@ -48,14 +46,13 @@ export default class LoginUI extends Component {
                         isSignOut: false,
                     });
                 }).catch(error => {
+                    this.renderMessage('Unable to get user details')
                     this.setState({
-                        message: 'Unable to get user details',
                         confirmResult: null,
                     });
                 })
             } else {
                 this.setState({
-                    message: null,
                     confirmResult: null,
                 });
             }
@@ -63,34 +60,25 @@ export default class LoginUI extends Component {
 
     }
 
-    componentWillReceiveProps() {
-
-    }
-
     componentWillUnmount() {
         if (this.unsubscribe) this.unsubscribe();
     }
 
-
-
     signIn = (phoneNumber) => {
-        this.setState({
-            message: 'Sending code ...'
-        });
+        this.renderMessage('Sending code ...')
+        console.log( "ph -- " + phoneNumber)
         firebase.auth().signInWithPhoneNumber(phoneNumber)
             .then(confirmResult => {
                 this.setState({
                     confirmResult,
-                    message: 'Code has been sent!'
                 })
+                this.props.setPhoneNumber(phoneNumber)
+                this.renderMessage('Code has been sent!')
             })
             .catch(error => {
                     let msg = error.message.substr(0, error.message.indexOf('.'))
-                    this.setState({
-                        message: `Error during sign in : ${msg}`
-                    })
+                    this.renderMessage(`Error during sign in : ${msg}`)
                 }
-
             );
     };
 
@@ -102,7 +90,6 @@ export default class LoginUI extends Component {
     changeNumber = () => {
         this.setState({
             confirmResult: null,
-            message: null
         });
     }
 
@@ -111,15 +98,11 @@ export default class LoginUI extends Component {
         if (confirmResult && codeInput.length) {
             confirmResult.confirm(codeInput)
                 .then((user) => {
-                    this.setState({
-                        message: 'Code Confirmed!'
-                    });
+                    this.renderMessage('Code Confirmed!')
                 })
                 .catch(error => {
                     let msg = error.message.substr(0, error.message.indexOf('.'))
-                    this.setState({
-                        message: `Code Confirm Error: ${msg}`
-                    })
+                    this.renderMessage(`Code Confirm Error: ${msg}`)
                 });
         }
     };
@@ -130,43 +113,41 @@ export default class LoginUI extends Component {
         firebase.auth().signOut();
         if (!isNotUpdateState) {
             this.setState({
-                message: null,
                 confirmResult: null,
             });
         }
-
     }
 
     renderMessage = (message) => {
         if (!!message) {
             Toast.show(message, Toast.LONG)
-            this.setState({
-                message: null,
-            });
         }
-
     }
 
-    componentWillReceiveProps() {
-        if(!isSignOut && graphcoolTokenStatus == 2) {
-            navigation.goBack();
-        }
-        if (this.props.graphcoolTokenStatus == -1) {
+    componentWillReceiveProps(nextProps) {
+        console.log(this.state.isSignOut + " + " + nextProps.graphcoolTokenStatus)
+        this.navigate(this.state.isSignOut, nextProps.graphcoolTokenStatus)
+        if (nextProps.graphcoolTokenStatus == -1) {
+            this.renderMessage('Unable to get user details')
             this.setState({
-                message: 'Unable to get user details',
                 confirmResult: null,
             });
         }
-        this.renderMessage(message);
+    }
+
+    navigate = (isSignOut, tokenStatus) => {
+        if(!isSignOut && tokenStatus == 2) {
+            this.renderMessage('Login successfull')
+            this.props.navigation.navigate('Details');
+        }
     }
 
     render() {
-        const { confirmResult, message, isSignOut } = this.state;
-        const { children, userPhoneNumber, graphcoolTokenStatus, navigation } = this.props;
-        
+        const { confirmResult, isSignOut } = this.state;
+        const { children, userPhoneNumber, graphcoolTokenStatus, navigation } = this.props;       
         console.log("in render" + `--${isSignOut}--${graphcoolTokenStatus}`)
         return (
-            <View style={basicCompStyles.fullSize}>
+            <View style={[basicCompStyles.fullSize, basicCompStyles.bgBaseColorLight]}>
                 {(isSignOut || graphcoolTokenStatus != 2) && !confirmResult && <PhoneNumberInput signIn={this.signIn} phoneNumber={userPhoneNumber} />}
                 {(isSignOut || graphcoolTokenStatus != 2) && confirmResult && <VerificationCodeInput  confirmCode={this.confirmCode} resendCode={this.resendCode} changeNumber={this.changeNumber}/>}
                 {/* {!isSignOut && graphcoolTokenStatus == 2 && <LoginDetail signOut={this.signOut} navigation={this.props.navigation}></LoginDetail>} */}

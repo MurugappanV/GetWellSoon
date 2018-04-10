@@ -5,6 +5,7 @@ import colors from '../constants/colors';
 export const fullHeight = Dimensions.get('window').height;
 export const fullWidth = Dimensions.get('window').width;
 export const width80pc = fullWidth * 0.5;
+export const width25pc = fullWidth * 0.25;
 export const statusBarHeight = 23;
 export const headerHeight = 52;
 export const tabBarHeight = 50;
@@ -70,6 +71,9 @@ export const basicCompStyles = StyleSheet.create({
     normalTextColor: {
         color: colors.NORAML_TEXT_COLOR
     },
+    brightTextColor: {
+        color: colors.BRIGHT_TEXT_COLOR
+    },
     darkTextColor: {
         color: colors.DARK_TEXT_COLOR
     },
@@ -122,6 +126,12 @@ export const basicCompStyles = StyleSheet.create({
         marginTop: 10,
         marginBottom: 10
     },
+    spacingMarginT: {
+        marginTop: 50
+    },
+    smallSpacingMarginT: {
+        marginTop: 30
+    },
     defaultPaddingSmall: {
         padding: 5
     },
@@ -166,6 +176,10 @@ export const basicStyles = {
         sizes.fullViewSize,
         basicCompStyles.bgBaseColor
     ],
+    deviceFullViewLight: [
+        sizes.fullViewSize,
+        basicCompStyles.bgBaseColorLight
+    ],
     homeHeaderContainer: [
         sizes.homeHeaderContainer,
         basicCompStyles.bgBaseColor,
@@ -207,6 +221,11 @@ export const basicStyles = {
     ],
     textSmaller: [
         basicCompStyles.normalTextColor,
+        compStyles.mainHeaderTextSmaller,
+        fonts.default
+    ],
+    textSmallerLink: [
+        basicCompStyles.brightTextColor,
         compStyles.mainHeaderTextSmaller,
         fonts.default
     ],
