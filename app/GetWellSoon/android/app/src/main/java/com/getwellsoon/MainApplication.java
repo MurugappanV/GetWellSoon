@@ -3,6 +3,7 @@ package com.getwellsoon;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import com.arttitude360.reactnative.rngoogleplaces.RNGooglePlacesPackage;
 import io.invertase.firebase.auth.RNFirebaseAuthPackage;
 import io.invertase.firebase.RNFirebasePackage;
 import io.invertase.firebase.storage.RNFirebaseStoragePackage;
@@ -29,6 +30,7 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
+            new RNGooglePlacesPackage(),
             new RNFirebasePackage(),
             new RNFirebaseStoragePackage(),
             new RNFirebaseAuthPackage(),

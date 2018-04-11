@@ -213,6 +213,12 @@ export const basicStyles = {
         compStyles.mainHeaderTextSmall,
         fonts.default
     ],
+    textSmallDark: [
+        basicCompStyles.darkTextColor,
+        basicCompStyles.seperateItemPadding,
+        compStyles.mainHeaderTextSmall,
+        fonts.default
+    ],
     textInputSmall: [
         basicCompStyles.darkTextColor,
         compStyles.mainHeaderTextSmall,

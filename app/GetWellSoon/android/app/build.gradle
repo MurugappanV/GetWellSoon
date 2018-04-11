@@ -138,10 +138,17 @@ android {
 }
 
 dependencies {
+    compile (project(':react-native-google-places')) {
+        exclude group: 'com.google.android.gms', module: 'play-services-base'
+          exclude group: 'com.google.android.gms', module: 'play-services-places'
+          exclude group: 'com.google.android.gms', module: 'play-services-location'
+    }
     compile(project(':react-native-firebase')) {
         transitive = false
     }
     compile "com.google.android.gms:play-services-base:11.8.0"
+    compile "com.google.android.gms:play-services-places:11.8.0"
+    compile "com.google.android.gms:play-services-location:11.8.0"
     compile "com.google.firebase:firebase-core:11.8.0"
     compile "com.google.firebase:firebase-storage:11.8.0"
     compile "com.google.firebase:firebase-auth:11.8.0"

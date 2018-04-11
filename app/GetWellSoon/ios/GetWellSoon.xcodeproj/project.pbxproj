@@ -40,6 +40,7 @@
 		D5D2C36B1EF34C579B1B630D /* libRNImagePicker.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 43F359D4C26B405ABB9809AE /* libRNImagePicker.a */; };
 		3509CBCDAC8D4F9FA9800749 /* libRNFirebase.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B3CC843C6E0F4464B6AB9746 /* libRNFirebase.a */; };
 		9D08DF9086974D86A171D03E /* libLRDRCTSimpleToast.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CCACE9E2F2D4A5A9E68C452 /* libLRDRCTSimpleToast.a */; };
+		2DFA79FC97D14F51917F323B /* libRNGooglePlaces.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DBB370BDB5314FD0B8B8E13D /* libRNGooglePlaces.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -297,6 +298,8 @@
 		B3CC843C6E0F4464B6AB9746 /* libRNFirebase.a */ = {isa = PBXFileReference; name = "libRNFirebase.a"; path = "libRNFirebase.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
 		90462D50F198465387D483DE /* LRDRCTSimpleToast.xcodeproj */ = {isa = PBXFileReference; name = "LRDRCTSimpleToast.xcodeproj"; path = "../node_modules/react-native-simple-toast/ios/LRDRCTSimpleToast.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
 		4CCACE9E2F2D4A5A9E68C452 /* libLRDRCTSimpleToast.a */ = {isa = PBXFileReference; name = "libLRDRCTSimpleToast.a"; path = "libLRDRCTSimpleToast.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
+		394566869B024DE1A17EFC46 /* RNGooglePlaces.xcodeproj */ = {isa = PBXFileReference; name = "RNGooglePlaces.xcodeproj"; path = "../node_modules/react-native-google-places/ios/RNGooglePlaces.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
+		DBB370BDB5314FD0B8B8E13D /* libRNGooglePlaces.a */ = {isa = PBXFileReference; name = "libRNGooglePlaces.a"; path = "libRNGooglePlaces.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -329,6 +332,7 @@
 				D5D2C36B1EF34C579B1B630D /* libRNImagePicker.a in Frameworks */,
 				3509CBCDAC8D4F9FA9800749 /* libRNFirebase.a in Frameworks */,
 				9D08DF9086974D86A171D03E /* libLRDRCTSimpleToast.a in Frameworks */,
+				2DFA79FC97D14F51917F323B /* libRNGooglePlaces.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -510,6 +514,7 @@
 				7AF6508CC10B43C5BF7AEDD5 /* RNImagePicker.xcodeproj */,
 				42E6DF4FA03D4A4F964763A1 /* RNFirebase.xcodeproj */,
 				90462D50F198465387D483DE /* LRDRCTSimpleToast.xcodeproj */,
+				394566869B024DE1A17EFC46 /* RNGooglePlaces.xcodeproj */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -1081,6 +1086,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1088,6 +1094,7 @@
 					"$(SRCROOT)\..\node_modules\react-native-image-picker\ios",
 					"$(SRCROOT)\..\node_modules\react-native-firebase\ios\RNFirebase/**",
 					"$(SRCROOT)\..\node_modules\react-native-simple-toast\ios\LRDRCTSimpleToast",
+					"$(SRCROOT)\..\node_modules\react-native-google-places\ios",
 				);
 			};
 			name = Debug;
@@ -1109,6 +1116,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1116,6 +1124,7 @@
 					"$(SRCROOT)\..\node_modules\react-native-image-picker\ios",
 					"$(SRCROOT)\..\node_modules\react-native-firebase\ios\RNFirebase/**",
 					"$(SRCROOT)\..\node_modules\react-native-simple-toast\ios\LRDRCTSimpleToast",
+					"$(SRCROOT)\..\node_modules\react-native-google-places\ios",
 				);
 			};
 			name = Release;
@@ -1141,6 +1150,7 @@
 					"$(SRCROOT)\..\node_modules\react-native-image-picker\ios",
 					"$(SRCROOT)\..\node_modules\react-native-firebase\ios\RNFirebase/**",
 					"$(SRCROOT)\..\node_modules\react-native-simple-toast\ios\LRDRCTSimpleToast",
+					"$(SRCROOT)\..\node_modules\react-native-google-places\ios",
 				);
 			};
 			name = Debug;
@@ -1165,6 +1175,7 @@
 					"$(SRCROOT)\..\node_modules\react-native-image-picker\ios",
 					"$(SRCROOT)\..\node_modules\react-native-firebase\ios\RNFirebase/**",
 					"$(SRCROOT)\..\node_modules\react-native-simple-toast\ios\LRDRCTSimpleToast",
+					"$(SRCROOT)\..\node_modules\react-native-google-places\ios",
 				);
 			};
 			name = Release;
@@ -1195,6 +1206,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1202,6 +1214,7 @@
 					"$(SRCROOT)\..\node_modules\react-native-image-picker\ios",
 					"$(SRCROOT)\..\node_modules\react-native-firebase\ios\RNFirebase/**",
 					"$(SRCROOT)\..\node_modules\react-native-simple-toast\ios\LRDRCTSimpleToast",
+					"$(SRCROOT)\..\node_modules\react-native-google-places\ios",
 				);
 			};
 			name = Debug;
@@ -1232,6 +1245,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1239,6 +1253,7 @@
 					"$(SRCROOT)\..\node_modules\react-native-image-picker\ios",
 					"$(SRCROOT)\..\node_modules\react-native-firebase\ios\RNFirebase/**",
 					"$(SRCROOT)\..\node_modules\react-native-simple-toast\ios\LRDRCTSimpleToast",
+					"$(SRCROOT)\..\node_modules\react-native-google-places\ios",
 				);
 			};
 			name = Release;
@@ -1264,6 +1279,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 			};
 			name = Debug;
@@ -1288,6 +1304,7 @@
 				TVOS_DEPLOYMENT_TARGET = 10.1;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 			};
