@@ -59,6 +59,9 @@ const sizes = StyleSheet.create({
     defaultInputHeight: {
         height: 40
     },
+    defaultAreaHeight: {
+        height: 120
+    },
 });
 
 export const basicCompStyles = StyleSheet.create({
@@ -215,7 +218,6 @@ export const basicStyles = {
     ],
     textSmallDark: [
         basicCompStyles.darkTextColor,
-        basicCompStyles.seperateItemPadding,
         compStyles.mainHeaderTextSmall,
         fonts.default
     ],
@@ -223,6 +225,12 @@ export const basicStyles = {
         basicCompStyles.darkTextColor,
         compStyles.mainHeaderTextSmall,
         sizes.defaultInputHeight,
+        fonts.default
+    ],
+    textAreaSmall: [
+        basicCompStyles.darkTextColor,
+        compStyles.mainHeaderTextSmall,
+        sizes.defaultAreaHeight,
         fonts.default
     ],
     textSmaller: [

@@ -1,6 +1,7 @@
 import React, {PureComponent} from "react";
 import {connect} from 'react-redux';
 import { bindActionCreators } from "redux";
+import firebase from 'react-native-firebase';
 import UserDetailUI from "../components/UserDetailUI";
 import { userDetDataActions } from "../actions";
 

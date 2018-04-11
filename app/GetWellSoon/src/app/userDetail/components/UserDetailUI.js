@@ -22,21 +22,26 @@ const todayStr = yyyy+"-"+mm+"-"+dd;
 
 
 export default class UserDetailUI extends PureComponent {
-
+    
     constructor(props) {
         super(props);
-        this.state = {name: "", email: "", imageUrl: "", date:""};
+        this.state = {name: "", email: "", imageUrl: "", date:"", address: "", lat: "", long: ""};
     }
 
-    openSearchModal() {
+    openSearchModal = () => {
         RNGooglePlaces.openPlacePickerModal()
         .then((place) => {
             console.log(place);
+            this.setState({
+                address: place.name,
+                lat: place.latitude,
+                long: place.longitude
+            })
             // place represents user's selection from the
             // suggestions and it is a simplified Google Place object.
         })
         .catch(error => console.log(error.message));  // error is a Javascript Error object
-      }
+    }
 
     saveManualEntry = () => {
         if(this.state.name.length == 0) {
@@ -47,6 +52,11 @@ export default class UserDetailUI extends PureComponent {
             this.refs.emailInput.focus(); 
         } else if (this.state.date.length == 0) {
             Toast.show("Please select your birth date", Toast.LONG)
+            this.refs.scroll.scrollToEnd()
+        } else if (this.state.address.length == 0) {
+            Toast.show("Please enter your address", Toast.LONG)
+            this.refs.scroll.scrollToEnd()
+            this.refs.addressInput.focus()
         } else {
             const dob = new Date(this.state.date);
             const dobStr = dob.toISOString();
@@ -94,70 +104,84 @@ export default class UserDetailUI extends PureComponent {
                 <Image style={[basicStyles.bigImage, basicCompStyles.aliginSelfC, basicCompStyles.smallSpacingMarginT, {borderRadius: width25pc}]} source={require('../../../../assets/images/profile.png')}/>
             </TouchableOpacity> */}
             <ScrollView style={basicCompStyles.fullSize} ref="scroll">
-            {this.renderImage(profilePicStatus, profilePicUrl)}
-            <Text style={[basicStyles.textSmaller, basicCompStyles.smallSpacingMarginT]}>{"User name"}</Text>
-            <TextInput
-                ref="nameInput"
-                onSubmitEditing={(event) => { 
-                    this.refs.emailInput.focus(); 
-                }}
-                returnKeyType={"next"}
-                autoCorrect={false}
-                underlineColorAndroid={colors.UNDERLINE_COLOR} 
-                selectionColor={colors.CURSOR_COLOR}
-                style={basicStyles.textInputSmall}
-                onChangeText={value => this.setState({ name : value })}
-                placeholder={"Name"}
-                placeholderTextColor={colors.PLACEHOLDER_COLOR} 
-                value={this.state.name}
-            />
-            <Text style={[basicStyles.textSmaller, basicCompStyles.smallSpacingMarginT]}>{"Email ID"}</Text>
-            <TextInput
-                ref="emailInput"
-                onSubmitEditing={(event) => { 
-                    this.refs.scroll.scrollToEnd(); 
-                }}
-                returnKeyType={"next"}
-                autoCorrect={false}
-                keyboardType={"email-address"}
-                underlineColorAndroid={colors.UNDERLINE_COLOR} 
-                selectionColor={colors.CURSOR_COLOR}
-                style={basicStyles.textInputSmall}
-                onChangeText={value => this.setState({ email: value })}
-                placeholder={"Email"}
-                placeholderTextColor={colors.PLACEHOLDER_COLOR} 
-                value={this.state.email}
-            />
-            <Text style={[basicStyles.textSmaller, basicCompStyles.smallSpacingMarginT]}>{"Date of birth"}</Text>
-            <DatePicker
-                ref="datePicker"
-                style={[ basicCompStyles.marginBottom15, {borderWidth : 0, alignSelf: 'flex-start'}]}
-                date={this.state.date}
-                mode="date"
-                placeholder="Date of birth"
-                format="YYYY-MM-DD"
-                maxDate={todayStr}
-                confirmBtnText="Confirm"
-                cancelBtnText="Cancel"
-                // showIcon={false}
-                customStyles={{
-                    dateInput: {borderWidth: 0, marginLeft: 36, justifyContent: 'center'},
-                    dateText: {color : colors.DARK_TEXT_COLOR},
-                    placeholderText: {color : colors.PLACEHOLDER_COLOR},
-                    dateIcon: {
-                        position: 'absolute',
-                        left: 0,
-                        top: 4,
-                        marginLeft: 0
-                    },
-                // ... You can check the source to find the other keys.
-                }}
-                onDateChange={(date) => {this.setState({date: date})}}
-            />
-            <Text style={[basicStyles.textSmaller, basicCompStyles.smallSpacingMarginT]}>{"Address"}</Text>
-            <TouchableOpacity onPress={() => this.openSearchModal()} >
-                <Text style={basicStyles.textSmallDark}>Pick a Place</Text>
-            </TouchableOpacity>
+                {this.renderImage(profilePicStatus, profilePicUrl)}
+                <Text style={[basicStyles.textSmaller, basicCompStyles.smallSpacingMarginT]}>{"User name"}</Text>
+                <TextInput
+                    ref="nameInput"
+                    onSubmitEditing={(event) => { 
+                        this.refs.emailInput.focus(); 
+                    }}
+                    returnKeyType={"next"}
+                    autoCorrect={false}
+                    underlineColorAndroid={colors.UNDERLINE_COLOR} 
+                    selectionColor={colors.CURSOR_COLOR}
+                    style={basicStyles.textInputSmall}
+                    onChangeText={value => this.setState({ name : value })}
+                    placeholder={"Name"}
+                    placeholderTextColor={colors.PLACEHOLDER_COLOR} 
+                    value={this.state.name}
+                />
+                <Text style={[basicStyles.textSmaller, basicCompStyles.smallSpacingMarginT]}>{"Email ID"}</Text>
+                <TextInput
+                    ref="emailInput"
+                    onSubmitEditing={(event) => { 
+                        this.refs.scroll.scrollToEnd(); 
+                    }}
+                    returnKeyType={"next"}
+                    autoCorrect={false}
+                    keyboardType={"email-address"}
+                    underlineColorAndroid={colors.UNDERLINE_COLOR} 
+                    selectionColor={colors.CURSOR_COLOR}
+                    style={basicStyles.textInputSmall}
+                    onChangeText={value => this.setState({ email: value })}
+                    placeholder={"Email"}
+                    placeholderTextColor={colors.PLACEHOLDER_COLOR} 
+                    value={this.state.email}
+                />
+                <Text style={[basicStyles.textSmaller, basicCompStyles.smallSpacingMarginT]}>{"Date of birth"}</Text>
+                <DatePicker
+                    ref="datePicker"
+                    style={[ basicCompStyles.marginBottom15, {borderWidth : 0, alignSelf: 'flex-start'}]}
+                    date={this.state.date}
+                    mode="date"
+                    placeholder="Date of birth"
+                    format="YYYY-MM-DD"
+                    maxDate={todayStr}
+                    confirmBtnText="Confirm"
+                    cancelBtnText="Cancel"
+                    // showIcon={false}
+                    customStyles={{
+                        dateInput: {borderWidth: 0, marginLeft: 36, justifyContent: 'center'},
+                        dateText: {color : colors.DARK_TEXT_COLOR},
+                        placeholderText: {color : colors.PLACEHOLDER_COLOR},
+                        dateIcon: {
+                            position: 'absolute',
+                            left: 0,
+                            top: 4,
+                            marginLeft: 0
+                        },
+                    // ... You can check the source to find the other keys.
+                    }}
+                    onDateChange={(date) => {this.setState({date: date})}}
+                />
+                <Text style={[basicStyles.textSmaller, basicCompStyles.smallSpacingMarginT]}>{"Address"}</Text>
+                <TouchableOpacity onPress={() => this.openSearchModal()} >
+                    <Text style={basicStyles.textSmallDark}>Click here to pick your place</Text> 
+                    <TextInput 
+                        style={[basicStyles.textAreaSmall, {textAlignVertical: 'top', borderWidth: 1, borderColor: colors.UNDERLINE_COLOR, marginTop: 5}]} 
+                        multiline={true} 
+                        numberOfLines={4} 
+                        onChangeText={(address) => this.setState({address})} 
+                        value={this.state.address}
+                        ref="addressInput"
+                        returnKeyType={"done"}
+                        autoCorrect={false}
+                        underlineColorAndroid={'transparent'} 
+                        selectionColor={colors.CURSOR_COLOR}
+                        placeholder={"Or enter your address manually here..."}
+                        placeholderTextColor={colors.PLACEHOLDER_COLOR} 
+                    />
+                </TouchableOpacity>
             </ScrollView>
             <TouchableOpacity style={[basicCompStyles.bgBaseColor, basicCompStyles.defaultPadding, basicCompStyles.defaultMarginTB, basicCompStyles.spacingMarginT, {height: 40, borderRadius: 20 }]} onPress={this.saveManualEntry} >
                 <Text style={[basicStyles.textWhiteSmall, basicCompStyles.alignTextCenter]}>{"Save"}</Text>
