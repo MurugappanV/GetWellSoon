@@ -43,7 +43,7 @@ export default async (event: FunctionEvent<EventData>) => {
         let orderDate = new Date();
         let result: Result = await savePrescription(api, orderId, orderDate.toISOString(), event.data.billUrl, event.data.message, event.data.isConfirmed, userId).then(r => r.Result);
         if(!(result.id != null && result.id.length > 0)) {
-            return { error: `No logged in user - ${event.context.auth}` };
+            return { error: `Prescription save error - ${event.context.auth}` };
         }
         await updateOrderInfo(api, orderInfo.list[0].id, nextOrderId);
         //let userId: string | null = null
