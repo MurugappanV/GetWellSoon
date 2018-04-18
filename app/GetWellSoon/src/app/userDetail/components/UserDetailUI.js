@@ -6,6 +6,8 @@ import { basicStyles , basicCompStyles , width25pc } from "../../../common/style
 import * as generalConstants from "../../../common/constants/generalConstants";
 import colors from '../../../common/constants/colors';
 import RNGooglePlaces from 'react-native-google-places';
+import Toast from 'react-native-simple-toast';
+import RadioForm, {RadioButton, RadioButtonInput, RadioButtonLabel} from 'react-native-simple-radio-button';
 
 const validateEmail = (emailInput) => {
     let reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/ ;
@@ -25,7 +27,7 @@ export default class UserDetailUI extends PureComponent {
     
     constructor(props) {
         super(props);
-        this.state = {name: "", email: "", imageUrl: "", date:"", address: "", lat: "", long: ""};
+        this.state = {name: "", email: "", imageUrl: "", date:"", address: "", lat: "", long: "", gender: 0};
     }
 
     openSearchModal = () => {
@@ -60,7 +62,8 @@ export default class UserDetailUI extends PureComponent {
         } else {
             const dob = new Date(this.state.date);
             const dobStr = dob.toISOString();
-            this.props.saveUserDetails(this.state.name, this.state.email, this.state.imageUrl, dobStr);
+            const gender = this.state.gender == 0 ? "FEMALE" : this.state.gender == 1 ? "MALE" : "OTHERS" ;
+            this.props.saveUserDetails(this.state.name, this.state.email, this.state.imageUrl, dobStr, this.state.address, this.state.lat, this.state.long, gender);
             // save in db
         }
     }
@@ -78,7 +81,6 @@ export default class UserDetailUI extends PureComponent {
     }
 
     renderImage = (uploadStatus, profilePicUrl) => {
-        console.log("upload status", uploadStatus);
         if(uploadStatus == 0 || uploadStatus == generalConstants.ERROR) {
             return <TouchableOpacity onPress={this.selectImage}>
                 <Image style={[basicStyles.bigImage, basicCompStyles.aliginSelfC, basicCompStyles.smallSpacingMarginT, {borderRadius: width25pc}]} source={require('../../../../assets/images/profile.png')}/>
@@ -164,6 +166,38 @@ export default class UserDetailUI extends PureComponent {
                     }}
                     onDateChange={(date) => {this.setState({date: date})}}
                 />
+                <Text style={[basicStyles.textSmaller, basicCompStyles.smallSpacingMarginT]}>{"Gender"}</Text>
+                <RadioForm formHorizontal={true} animation={true} style={{marginTop: 10, flex: 1, flexDirection: 'column', justifyContent: 'space-around'}}>
+                    {[
+                        {label: 'Female  ', value: 0 },
+                        {label: 'Male  ', value: 1 },
+                        {label: 'Others  ', value: 2 }
+                    ].map((obj, i) => {
+                        return <RadioButton labelHorizontal={true} key={i}>
+                            <RadioButtonInput
+                                obj={obj}
+                                index={i}
+                                isSelected={this.state.gender === i}
+                                onPress={(value) => {this.setState({gender:value})}}
+                                borderWidth={2}
+                                buttonInnerColor={colors.UNDERLINE_COLOR}
+                                buttonOuterColor={this.state.gender === i ? colors.UNDERLINE_COLOR : colors.CURSOR_COLOR}
+                                buttonSize={8}
+                                buttonOuterSize={16}
+                                buttonStyle={{}}
+                                buttonWrapStyle={{marginLeft: 10}}
+                            />
+                            <RadioButtonLabel
+                                obj={obj}
+                                index={i}
+                                labelHorizontal={true}
+                                onPress={(value) => {this.setState({gender:value})}}
+                                labelStyle={{fontSize: 16, color: colors.DARK_TEXT_COLOR}}
+                                labelWrapStyle={{marginLeft: 1}}
+                            /> 
+                        </RadioButton>
+                    })}
+                </RadioForm>
                 <Text style={[basicStyles.textSmaller, basicCompStyles.smallSpacingMarginT]}>{"Address"}</Text>
                 <TouchableOpacity onPress={() => this.openSearchModal()} >
                     <Text style={basicStyles.textSmallDark}>Click here to pick your place</Text> 
