@@ -26,7 +26,7 @@ class OrderUI extends PureComponent {
 
     constructor() {
         super()
-        this.state = {isImageViewVisible : false, imageViewSrc: [{source: {uri: ""}}]}
+        this.state = {isImageViewVisible : false, imageViewSrc: [{source: {uri: "https://firebasestorage.googleapis.com/v0/b/medscan-39c06.appspot.com/o/prescription%2FIMG_20180102_024138_674.jpg2018-04-25T18%3A32%3A35.309Z?alt=media&token=891d3f1a-fc79-43a1-92bd-ce713effabd6"},width: 806,height: 720,}]}
     }
     selectImage = () => {
         pickImage("Select Prescription", "prescription", this.props.setPresUrl, this.props.setUploadStatus);
@@ -38,7 +38,9 @@ class OrderUI extends PureComponent {
             imageViewSrc: [{
                 source: {
                     uri: this.props.prescriptionUrl,
-                }
+                },
+                width: 806,
+                height: 720,
             }],
             isImageViewVisible : true,
         })
@@ -79,6 +81,7 @@ class OrderUI extends PureComponent {
 
     render() {
         console.log("img src ", this.state.imageViewSrc)
+        console.log("pres src ", this.props.prescriptionUrl)
         const {prescriptionUrl, presUploadStatus} = this.props;
         return <View style={basicStyles.tabContainer}>
             <ScrollView style={[basicCompStyles.fullSize]}>
