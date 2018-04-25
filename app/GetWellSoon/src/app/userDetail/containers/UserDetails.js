@@ -13,30 +13,29 @@ class UserDetails extends PureComponent {
     constructor(props) {
         super(props)
         this.saveUserDetails = this.saveUserDetails.bind(this)
-        if(props.userDetails && props.userDetails.phoneNo != null) {
-            props.navigation.dispatch({
-                routeName: 'Home',
-                type: 'GoToRoute',
-            })
-        } else {
+        if(!(props.userDetails && props.userDetails.phoneNo != null)) {
             props.getUserById(this.props.userId)
         }
     }
 
-    componentWillReceiveProps(props) {
-        if(props.userDetails.phoneNo != null) {
-            props.navigation.dispatch({
-                routeName: 'Home',
-                type: 'GoToRoute',
-            })
-        }
-    }
+    // componentWillReceiveProps(props) {
+    //     if(props.userDetails.phoneNo != null) {
+    //         props.navigation.dispatch({
+    //             routeName: 'Home',
+    //             type: 'GoToRoute',
+    //         })
+    //     }
+    // }
 
     saveUserDetails = (name, email, photoUrl, dob, address, lat, long, gender) => {
         lat = lat.length > 0 ? lat : null;
         long = long.length > 0 ? long : null;
         photoUrl = photoUrl.length > 0 ? photoUrl : null;
         this.props.saveUserDetails(this.props.userId, name, email, photoUrl, this.props.phoneNumber, dob, address, lat, long, gender)
+        this.props.navigation.dispatch({
+            routeName: 'Home',
+            type: 'GoToRoute',
+        })
     }
 
     render() {

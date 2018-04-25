@@ -4,12 +4,20 @@ import { basicStyles, basicCompStyles } from "../../../../common/styles/styleShe
 
 class EmptyUI extends PureComponent {
 
+    renderLabel(redirectPage) {
+        if(redirectPage == "Details") {
+            return <Text style={[basicStyles.textSmall]}>Click here to add delivery details</Text>
+        } else {
+            return <Text style={[basicStyles.textSmall]}>Click here to Login</Text>
+        } 
+    }
+
     render() {
-        let {navigate} = this.props.navigation
+        let {navigation, redirectPage} = this.props
         return <View style={basicStyles.tabContainer}>
-            <TouchableOpacity onPress={() => navigate("Login")} style={basicStyles.tabContainer}>
+            <TouchableOpacity onPress={() => navigation.navigate(redirectPage)} style={basicStyles.tabContainer}>
                 <Image style={basicStyles.bigImage} source={require('../../../../../assets/images/user.png')} />
-                <Text style={[basicStyles.textSmall]}>Click here to Login</Text>
+                {this.renderLabel(redirectPage)}
             </TouchableOpacity>
         </View>
     }

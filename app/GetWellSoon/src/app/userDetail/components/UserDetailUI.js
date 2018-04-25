@@ -22,7 +22,6 @@ if(dd<10){dd='0'+dd}
 if(mm<10){mm='0'+mm} 
 const todayStr = yyyy+"-"+mm+"-"+dd; 
 
-
 export default class UserDetailUI extends PureComponent {
     
     constructor(props) {

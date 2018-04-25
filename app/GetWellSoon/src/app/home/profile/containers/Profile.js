@@ -1,7 +1,9 @@
 import React, {PureComponent} from "react";
 import {connect} from 'react-redux';
+import { bindActionCreators } from "redux";
 import ProfileUI from "../components/ProfileUI";
 import EmptyUI from "../components/EmptyUI";
+import { userDetDataActions } from "../../../userDetail/actions";
 
 class Profile extends PureComponent {
 
@@ -13,14 +15,20 @@ class Profile extends PureComponent {
         }
     }
 
+    componentWillReceiveProps(nextProps) {
+        if(nextProps.userId != null && nextProps.userDetailLoadingStatus == 0) {
+            nextProps.getUserById(nextProps.userId)
+        }
+    }
+
     renderItem = () => {
         if(this.props.userId == null) {
-            return <EmptyUI navigation = {this.props.navigation}/>
+            return <EmptyUI navigation = {this.props.navigation} redirectPage={"Login"}/>
         } else if(this.props.userDetails) {
             if(this.props.userDetails.phoneNo != null) {
                 return <ProfileUI {...this.props}/>
             } else {
-                return <EmptyUI navigation = {this.props.navigation}/>
+                return <EmptyUI navigation = {this.props.navigation} redirectPage={"Details"}/>
             }
         } else {
             return <View></View>
@@ -44,4 +52,4 @@ function mapDispatchToProps(dispatch) {
     return bindActionCreators(userDetDataActions, dispatch);
 }
 
-export default connect(mapStateToProps)(Profile);
+export default connect(mapStateToProps, mapDispatchToProps)(Profile);

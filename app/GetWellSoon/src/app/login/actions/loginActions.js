@@ -12,7 +12,7 @@ export function setPhoneNumber(phoneNumber) {
 export function clearTokenId() {
     return (dispatch, getState) => {
         AsyncStorage.removeItem('token');
-        AsyncStorage.removeItem('user');
+        AsyncStorage.removeItem('userId');
         dispatch({type: types.GRAPHCOOL_AUTH_TOKEN_CLEAR});
         dispatch({type: types.CLEAR_USER_ID});
         dispatch({type: types.CLEAR_USER_DETAILS});
@@ -27,6 +27,7 @@ export function setTokenId(token) {
         }).then((resp) => {
             if (resp.data) {
                 AsyncStorage.setItem('token', resp.data.authenticateFirebaseUser.token);
+                AsyncStorage.setItem('userId', resp.data.authenticateFirebaseUser.id);
                 dispatch({ type: types.SET_USER_ID, data: resp.data.authenticateFirebaseUser.id});
                 dispatch({ type: types.GRAPHCOOL_AUTH_TOKEN_OBTAINED});
             } else {

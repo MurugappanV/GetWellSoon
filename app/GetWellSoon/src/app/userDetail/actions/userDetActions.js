@@ -35,7 +35,6 @@ export function saveUserDetails(userId, name, email, photoUrl, phoneNumber, dob,
             variables: {id: userId, name: name, email: email, phoneNo: phoneNumber, imageUrl: photoUrl, dateOfBirth: dob, address: address, addressLat: lat, addressLong: long, gender: gender}
         }).then((resp) => {
             if (resp.data) {
-                AsyncStorage.setItem('user', JSON.stringify(resp.data.User));
                 dispatch({type: types.USER_DETAILS_LOADED, data: resp.data.updateUser});
             }
             if(resp.errors) {
@@ -55,7 +54,6 @@ export function getUserById(userId) {
             variables: {id: userId}
         }).then((resp) => {
             if (resp.data) {
-                AsyncStorage.setItem('user', JSON.stringify(resp.data.User));
                 dispatch({type: types.USER_DETAILS_LOADED, data: resp.data.User});
             }
             if(resp.errors) {

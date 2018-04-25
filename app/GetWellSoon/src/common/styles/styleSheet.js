@@ -6,6 +6,8 @@ export const fullHeight = Dimensions.get('window').height;
 export const fullWidth = Dimensions.get('window').width;
 export const width80pc = fullWidth * 0.5;
 export const width25pc = fullWidth * 0.25;
+export const width40pc = fullWidth * 0.4;
+export const width20pc = fullWidth * 0.2;
 export const statusBarHeight = 23;
 export const headerHeight = 52;
 export const tabBarHeight = 50;
@@ -49,9 +51,17 @@ const sizes = StyleSheet.create({
         height: 22,
         width: 22
     },
+    mediumImage: {
+        height: 35,
+        width: 35
+    },
     bigImage: {
         height: width80pc,
         width: width80pc
+    },
+    profImage: {
+        height: width40pc,
+        width: width40pc
     },
     tabContainer: {
         minHeight: tabFullHeight
@@ -76,6 +86,9 @@ export const basicCompStyles = StyleSheet.create({
     },
     brightTextColor: {
         color: colors.BRIGHT_TEXT_COLOR
+    },
+    orangeTextColor: {
+        color: colors.ORANGE_TEXT_COLOR
     },
     darkTextColor: {
         color: colors.DARK_TEXT_COLOR
@@ -109,11 +122,18 @@ export const basicCompStyles = StyleSheet.create({
         flexDirection: 'row', 
         alignItems: 'center'
     },
+    flexRowSaN: {
+        flexDirection: 'row',
+        justifyContent: 'space-around',
+    },
     aliginContentC: {
         alignContent: 'center'
     }, 
     aliginSelfC: {
         alignSelf: 'center'
+    }, 
+    aliginSelfS: {
+        alignSelf: 'stretch'
     },
     alignTextCenter: {
         textAlign: 'center'
@@ -125,6 +145,9 @@ export const basicCompStyles = StyleSheet.create({
     defaultPadding: {
         padding: 10
     },
+    bigPadding: {
+        padding: 30
+    },
     defaultMarginTB: {
         marginTop: 10,
         marginBottom: 10
@@ -134,6 +157,9 @@ export const basicCompStyles = StyleSheet.create({
     },
     smallSpacingMarginT: {
         marginTop: 30
+    },
+    defaultMarginSmall: {
+        margin: 5
     },
     defaultPaddingSmall: {
         padding: 5
@@ -165,6 +191,9 @@ export const compStyles = StyleSheet.create({
     },
     mainHeaderTextBig:{
         fontSize: 22
+    },
+    mainHeaderTextBigger:{
+        fontSize: 35
     },
     mainHeaderTextSmall: {
         fontSize: 16
@@ -210,6 +239,17 @@ export const basicStyles = {
         compStyles.mainHeaderTextBig,
         fonts.default
     ],
+    textBigSimple: [
+        basicCompStyles.darkTextColor,
+        compStyles.mainHeaderTextBig,
+        fonts.default
+    ],
+    textBigger: [
+        basicCompStyles.darkTextColor,
+        basicCompStyles.alignTextCenter,
+        compStyles.mainHeaderTextBigger,
+        fonts.default
+    ],
     textSmall: [
         basicCompStyles.normalTextColor,
         basicCompStyles.seperateItemPadding,
@@ -219,6 +259,11 @@ export const basicStyles = {
     textSmallDark: [
         basicCompStyles.darkTextColor,
         compStyles.mainHeaderTextSmall,
+        fonts.default
+    ],
+    textSmallOrange: [
+        basicCompStyles.orangeTextColor,
+        compStyles.mainHeaderTextSmaller,
         fonts.default
     ],
     textInputSmall: [
@@ -243,6 +288,11 @@ export const basicStyles = {
         compStyles.mainHeaderTextSmaller,
         fonts.default
     ],
+    textSmallBright: [
+        basicCompStyles.brightTextColor,
+        compStyles.mainHeaderTextSmall,
+        fonts.default
+    ],
     textWhiteBig: [
         compStyles.mainHeaderTextBold,
         compStyles.mainHeaderTextBig,
@@ -253,17 +303,18 @@ export const basicStyles = {
         compStyles.mainHeaderTextSmall,
         fonts.default
     ],
-    headerImage: [
-        sizes.headerImage
-    ],
-    tabImage: [
-        sizes.tabImage
-    ],
     tabBar: [
         sizes.tabBar,
         basicCompStyles.bgBaseColor,
         basicCompStyles.defaultPaddingSmall,
         basicCompStyles.defaultElevation
+    ],
+    scrollTabContainer: [
+        basicCompStyles.bgBaseColorLight, 
+        // basicCompStyles.fullSize,
+        basicCompStyles.flexColumnNC,
+        basicCompStyles.bigPadding,
+        sizes.fullDeviceWidth
     ],
     tabContainer: [
         basicCompStyles.bgBaseColorLight, 
@@ -272,5 +323,17 @@ export const basicStyles = {
     ],
     bigImage: [
         sizes.bigImage
-    ]
+    ],
+    profImage: [
+        sizes.profImage
+    ], 
+    mediumImage: [
+        sizes.mediumImage
+    ],
+    headerImage: [
+        sizes.headerImage
+    ],
+    tabImage: [
+        sizes.tabImage
+    ],
 }
