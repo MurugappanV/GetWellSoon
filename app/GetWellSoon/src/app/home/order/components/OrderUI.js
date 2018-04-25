@@ -5,20 +5,51 @@ import { basicCompStyles, basicStyles } from "../../../../common/styles/styleShe
 import * as generalConstants from "../../../../common/constants/generalConstants";
 import { pickImage } from "../../../common/utils/imagePicker";
 import colors from "../../../../common/constants/colors";
+import ImageView from 'react-native-image-view';
+ 
+const images = [
+    {
+        source: {
+            uri: 'https://cdn.pixabay.com/photo/2017/08/17/10/47/paris-2650808_960_720.jpg',
+        },
+        title: 'Paris',
+        width: 806,
+        height: 720,
+    },
+];
+ 
+
 
 class OrderUI extends PureComponent {
+
+    
+
+    constructor() {
+        super()
+        this.state = {isImageViewVisible : false, imageViewSrc: [{source: {uri: ""}}]}
+    }
     selectImage = () => {
         pickImage("Select Prescription", "prescription", this.props.setPresUrl, this.props.setUploadStatus);
+    }
+
+    viewImage = () => {
+        this.setState({
+            
+            imageViewSrc: [{
+                source: {
+                    uri: this.props.prescriptionUrl,
+                }
+            }],
+            isImageViewVisible : true,
+        })
     }
 
     renderImage = (uploadStatus, prescriptionUrl) => {
         console.log("upload status", uploadStatus);
         if(uploadStatus == 0 || uploadStatus == generalConstants.ERROR) {
-            return <TouchableOpacity onPress={this.selectImage}>
-                <Image style={[basicStyles.bigImage]} source={require('../../../../../assets/images/photo.png')}/>
-            </TouchableOpacity>
+            return <Image style={[basicStyles.bigImage]} source={require('../../../../../assets/images/photo.png')}/>
         } else if(uploadStatus == generalConstants.LOADED) {
-            return <TouchableOpacity onPress={this.selectImage}>
+            return <TouchableOpacity onPress={this.viewImage}>
                 <Image style={[basicStyles.bigImage]} source={{uri : prescriptionUrl}}/>
             </TouchableOpacity>
         } else {
@@ -29,7 +60,25 @@ class OrderUI extends PureComponent {
         }
     }
 
+    renderButton = (uploadStatus) => {
+        if(uploadStatus == 0 || uploadStatus == generalConstants.ERROR) {
+            return <TouchableOpacity style={[basicCompStyles.bgBaseColor, basicCompStyles.defaultPadding, basicCompStyles.smallSpacingMarginT, {height: 40, borderRadius: 20 }]} onPress={this.selectImage} >
+                <Text style={[basicStyles.textWhiteSmall, basicCompStyles.alignTextCenter]}>{"  Select prescription  "}</Text>
+            </TouchableOpacity>
+        } else if(uploadStatus == generalConstants.LOADED) {
+            return <TouchableOpacity style={[basicCompStyles.bgBaseColor, basicCompStyles.defaultPadding, basicCompStyles.smallSpacingMarginT, {height: 40, borderRadius: 20 }]} onPress={() => {}} >
+                <Text style={[basicStyles.textWhiteSmall, basicCompStyles.alignTextCenter]}>{"Order medicine"}</Text>
+            </TouchableOpacity>
+        } else {
+            return <TouchableOpacity style={[basicCompStyles.bgBaseColor, basicCompStyles.defaultPadding, basicCompStyles.smallSpacingMarginT, {height: 40, borderRadius: 20 }]} onPress={() => {}} >
+                <Text style={[basicStyles.textWhiteSmall, basicCompStyles.alignTextCenter]}>{"Select prescription"}</Text>
+            </TouchableOpacity>
+        }
+        
+    }
+
     render() {
+        console.log("img src ", this.state.imageViewSrc)
         const {prescriptionUrl, presUploadStatus} = this.props;
         return <View style={basicStyles.tabContainer}>
             <ScrollView style={[basicCompStyles.fullSize]}>
@@ -37,6 +86,7 @@ class OrderUI extends PureComponent {
                     <Text style={basicStyles.textBig}>Buying medicine is now easier than ever!!!</Text>
                     <View style={[basicCompStyles.flexColumnCC, basicCompStyles.fullSize]}>
                         {this.renderImage(presUploadStatus, prescriptionUrl)}
+                         {this.renderButton(presUploadStatus)}
                         {/* <TouchableOpacity onPress={this.selectImage}>
                             <Image style={[basicStyles.bigImage]} source={require('../../../../../assets/images/photo.png')}/>
                         </TouchableOpacity> */}
@@ -47,6 +97,12 @@ class OrderUI extends PureComponent {
                     </View>
                 </View>
             </ScrollView>
+            <ImageView
+                images={this.state.imageViewSrc}
+                imageIndex={0}
+                isVisible={this.state.isImageViewVisible}
+                renderFooter={(currentImage) => (<View><Text>Selected Prescription</Text></View>)}
+            />
         </View>
     }
 }

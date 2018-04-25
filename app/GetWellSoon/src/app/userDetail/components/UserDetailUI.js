@@ -26,7 +26,26 @@ export default class UserDetailUI extends PureComponent {
     
     constructor(props) {
         super(props);
-        this.state = {name: "", email: "", imageUrl: "", date:"", address: "", lat: "", long: "", gender: 0};
+          
+        if(props.userDetails && props.userDetails.phoneNo != null) {
+            let userDetails = props.userDetails;
+            let userGender = userDetails.gender == "FEMALE" ? 0 : userDetails.gender == "MALE" ? 1 : 2;
+            this.state = {
+                name: userDetails.name, 
+                email: userDetails.email, 
+                date: userDetails.dateOfBirth, 
+                address: userDetails.address, 
+                lat: userDetails.addressLat != null ?  userDetails.addressLat : "" ,
+                long: userDetails.addressLong != null ?  userDetails.addressLong : "" ,
+                gender: userGender
+            }
+        } else {
+            this.state = {name: "", email: "", date:"", address: "", lat: "", long: "", gender: 0};
+        }
+    }
+
+    componentWillReceiveProps(nextProps) {
+        nextProps.userDetails && nextProps.userDetails.phoneNo != null && this.setUserDetail(nextProps.userDetails);
     }
 
     openSearchModal = () => {
@@ -62,16 +81,21 @@ export default class UserDetailUI extends PureComponent {
             const dob = new Date(this.state.date);
             const dobStr = dob.toISOString();
             const gender = this.state.gender == 0 ? "FEMALE" : this.state.gender == 1 ? "MALE" : "OTHERS" ;
-            this.props.saveUserDetails(this.state.name, this.state.email, this.state.imageUrl, dobStr, this.state.address, this.state.lat, this.state.long, gender);
+            this.props.saveUserDetails(this.state.name, this.state.email, dobStr, this.state.address, this.state.lat, this.state.long, gender);
             // save in db
         }
     }
 
-    setUserDetail = (name, email, photoUrl) => {
+    setUserDetail = (userDetails) => {
+        let userGender = userDetails.gender == "FEMALE" ? 0 : userDetails.gender == "MALE" ? 1 : 2;
         this.setState({
-            name: name, 
-            email: email, 
-            imageUrl: photoUrl
+            name: userDetails.name, 
+            email: userDetails.email, 
+            date: userDetails.dateOfBirth, 
+            address: userDetails.address, 
+            lat: userDetails.addressLat != null ?  userDetails.addressLat : "" ,
+            long: userDetails.addressLong != null ?  userDetails.addressLong : "" ,
+            gender: userGender
         })
     }
 

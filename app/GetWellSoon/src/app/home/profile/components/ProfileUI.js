@@ -21,7 +21,7 @@ class ProfileUI extends PureComponent {
 
     renderUserImage = (imageUrl) => {
         if(imageUrl && imageUrl.length > 0) {
-            return <Image style={[basicStyles.profImage, basicCompStyles.defaultPadding, {borderRadius: width20pc}]} source={{uri : profilePicUrl}}/>
+            return <Image style={[basicStyles.profImage, basicCompStyles.defaultPadding, {borderRadius: width20pc}]} source={{uri : imageUrl}}/>
         } else {
             return <Image style={[basicStyles.profImage, basicCompStyles.defaultPadding, {borderRadius: width20pc}]} source={require('../../../../../assets/images/profile.png')}/>
         }
