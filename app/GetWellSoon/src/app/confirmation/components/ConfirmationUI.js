@@ -34,7 +34,7 @@ export default class ConfirmationUI extends PureComponent {
             Toast.show("Please enter delivery address", Toast.LONG)
             this.refs.addressInput.focus()
         } else {
-            this.props.saveUserDetails(this.state.name, this.state.email, dobStr, this.state.address, this.state.lat, this.state.long, gender);
+            this.props.savePrescription(this.props.prescriptionUrl, !this.state.needPriceConfirmation, this.state.message, this.state.address, this.state.name, this.state.deliveryPhoneNo);
             // save in db
         }
     }

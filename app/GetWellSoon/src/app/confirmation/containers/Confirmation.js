@@ -3,6 +3,8 @@ import {connect} from 'react-redux';
 import { bindActionCreators } from "redux";
 import ConfirmationUI from "../components/ConfirmationUI";
 import { cfrPresDataActions } from "../actions";
+import *  as generalConstants from '../../../common/constants/generalConstants';
+import SuccesErr from "../components/SuccesErr";
 
 class Confirmation extends PureComponent {
     static navigationOptions =  { 
@@ -36,9 +38,17 @@ class Confirmation extends PureComponent {
     //     })
     // }
 
+    renderItem = () => {
+        if(this.props.savePresStatus == generalConstants.LOADED || this.props.savePresStatus == generalConstants.ERROR) {
+            return <SuccesErr {...this.props } />
+        } else {
+            return <ConfirmationUI {...this.props } />
+        }
+    }
+
     render() {
         // const {profilePicUrl, profilePicStatus, setProfilePicUrl, uploadingImageUrl} = this.props;
-        return <ConfirmationUI {...this.props } />
+        return this.renderItem()
     }
 }
 
@@ -50,6 +60,7 @@ function mapStateToProps(state) {
         // phoneNumber: state.userRegisteredPhoneNumber,
         // userDetailLoadingStatus: state.userProfileDetail.userDetailLoadingStatus,
         userDetails: state.userProfileDetail.userDetails,
+        savePresStatus: state.savePresStatus,
     }
 }
 

@@ -1,18 +1,9 @@
 import gql from 'graphql-tag';
 
 export const savePrescription = gql`
-    mutation UpdateUser($id: ID!, $name: String, $email: String, $phoneNo: String, $imageUrl: String, $dateOfBirth: DateTime, $address: String, $addressLat: String, $addressLong: String, $gender: Gender) {
-        updateUser(id: $id, name: $name, email: $email, phoneNo: $phoneNo, imageUrl: $imageUrl, dateOfBirth: $dateOfBirth, address: $address, addressLat: $addressLat, addressLong: $addressLong, gender: $gender) {
+    mutation addPrescription($billUrl: String, $isConfirmed: Boolean, $message: String,$deliveryAddress: String,$deliveryName: String,$deliveryPhoneNumber: String) {
+        addPrescription(billUrl: $billUrl, isConfirmed: $isConfirmed, message: $message,deliveryAddress: $deliveryAddress,deliveryName: $deliveryName,deliveryPhoneNumber: $deliveryPhoneNumber) {
             id
-            address
-            addressLat
-            addressLong
-            dateOfBirth
-            email
-            gender
-            imageUrl
-            name
-            phoneNo
         }
     }
 `
