@@ -5,6 +5,9 @@ type AddPrescriptionPayload {
 extend type Mutation {
   addPrescription(billUrl: String,
   isConfirmed: Boolean,
-  message: String
+  message: String,
+  deliveryAddress: String,
+  deliveryName: String,
+  deliveryPhoneNumber: String
   ): AddPrescriptionPayload!
 }

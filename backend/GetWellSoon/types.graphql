@@ -36,6 +36,9 @@ type Prescription @model {
   status: StatusType @defaultValue(value: "PLACED")
   customer: User! @relation(name: "UserPrescriptionRelation")
   logs: [Log!]! @relation(name: "PrescriptionLogsRelation")
+  deliveryAddress: String!
+  deliveryPhoneNumber: String!
+  deliveryName: String!
 }
 
 type Log @model {

@@ -5,6 +5,9 @@ interface EventData {
     billUrl: string
     isConfirmed: boolean
     message: string
+    deliveryAddress: string
+    deliveryName: string
+    deliveryPhoneNumber: string
 }
 
 interface Order {
@@ -41,7 +44,7 @@ export default async (event: FunctionEvent<EventData>) => {
         }
         orderId = orderInfo.list[0].orderLabelPrefix + orderId;
         let orderDate = new Date();
-        let result: Result = await savePrescription(api, orderId, orderDate.toISOString(), event.data.billUrl, event.data.message, event.data.isConfirmed, userId).then(r => r.Result);
+        let result: Result = await savePrescription(api, orderId, orderDate.toISOString(), event.data.billUrl, event.data.message, event.data.isConfirmed, userId, event.data.deliveryAddress,event.data.deliveryPhoneNumber,event.data.deliveryName).then(r => r.Result);
         if(!(result.id != null && result.id.length > 0)) {
             return { error: `Prescription save error - ${event.context.auth}` };
         }
@@ -74,28 +77,34 @@ async function getOrderInfo(api: GraphQLClient): Promise<{ Orders }> {
     return api.request<{ Orders }>(query, variables)
 }
 
-async function savePrescription(api: GraphQLClient,orderId: string,orderDate: string,billUrl: string,message: string,isConfirmed: boolean,userId: string): Promise<{ Result }> {
+async function savePrescription(api: GraphQLClient,orderId: string,orderDate: string,billUrl: string,message: string,isConfirmed: boolean,userId: string, deliveryAddress: string,deliveryPhoneNumber: string,deliveryName: string): Promise<{ Result }> {
     const query = `
-      mutation createPrescription($orderId: String!,$orderDate: DateTime!,$billUrl: String!,$message: String!,$isConfirmed: Boolean!,$userId: ID!) {
+      mutation createPrescription($orderId: String!,$orderDate: DateTime!,$billUrl: String!,$message: String!,$isConfirmed: Boolean!,$userId: ID!,$deliveryAddress: String!,$deliveryPhoneNumber: String!,$deliveryName: String!) {
         createPrescription(orderId: $orderId, 
             orderDate:$orderDate,
             billUrl: $billUrl,
             customerMessage: $message,
             isConfirmed: $isConfirmed,
             customerId: $userId,
+            deliveryAddress: $deliveryAddress,
+            deliveryPhoneNumber: $deliveryPhoneNumber,
+            deliveryName: $deliveryName,
             logs:[{message: $message, status: "PLACED", action: "Order placed by customer", userId: $userId}]) {
             id
         }
       }
     `
-  
+    
     const variables = {
         orderId,
         orderDate,
         billUrl,
         message,
         isConfirmed,
-        userId
+        userId,
+        deliveryAddress,
+        deliveryPhoneNumber,
+        deliveryName,
     }
   
     return api.request<{ Result }>(query, variables)
