@@ -6,23 +6,8 @@ import * as generalConstants from "../../../../common/constants/generalConstants
 import { pickImage } from "../../../common/utils/imagePicker";
 import colors from "../../../../common/constants/colors";
 import ImageView from 'react-native-image-view';
- 
-const images = [
-    {
-        source: {
-            uri: 'https://cdn.pixabay.com/photo/2017/08/17/10/47/paris-2650808_960_720.jpg',
-        },
-        title: 'Paris',
-        width: 806,
-        height: 720,
-    },
-];
- 
-
 
 class OrderUI extends PureComponent {
-
-    
 
     constructor() {
         super()
@@ -80,8 +65,6 @@ class OrderUI extends PureComponent {
     }
 
     render() {
-        console.log("img src ", this.state.imageViewSrc)
-        console.log("pres src ", this.props.prescriptionUrl)
         const {prescriptionUrl, presUploadStatus} = this.props;
         return <View style={basicStyles.tabContainer}>
             <ScrollView style={[basicCompStyles.fullSize]}>

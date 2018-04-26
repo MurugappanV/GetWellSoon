@@ -26,9 +26,8 @@ export default class UserDetailUI extends PureComponent {
     
     constructor(props) {
         super(props);
-          
-        if(props.userDetails && props.userDetails.phoneNo != null) {
-            let userDetails = props.userDetails;
+        let userDetails = props.userDetails;
+        if(userDetails && userDetails.phoneNo != null) {        
             let userGender = userDetails.gender == "FEMALE" ? 0 : userDetails.gender == "MALE" ? 1 : 2;
             this.state = {
                 name: userDetails.name, 

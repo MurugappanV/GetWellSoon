@@ -1,7 +1,6 @@
 import * as types from '../../common/redux/types';
 import {userByIdQuery, updateUser} from '../graphql/quries';
 import client from '../../common/redux/apollo/client';
-import { AsyncStorage } from 'react-native'
 
 export function setProfilePicUrl(profilePicUrl) {
     return (dispatch, getState) => {
