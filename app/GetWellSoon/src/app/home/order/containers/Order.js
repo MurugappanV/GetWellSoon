@@ -9,8 +9,7 @@ class Order extends PureComponent {
     render() {
         const {prescriptionUrl, presUploadStatus, setPrescriptionImageUrl, uploadingImageUrl} = this.props;
         return <OrderUI 
-            prescriptionUrl={prescriptionUrl} 
-            presUploadStatus={presUploadStatus} 
+            {...this.props}
             setPresUrl={setPrescriptionImageUrl} 
             setUploadStatus={uploadingImageUrl}
         />

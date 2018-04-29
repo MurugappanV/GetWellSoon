@@ -1,8 +1,9 @@
 import React, {PureComponent} from "react";
-import {View, Image, Text} from 'react-native';
-import CheckBox from 'react-native-check-box';
+import {View, Image, Text, ScrollView, TextInput, TouchableOpacity} from 'react-native';
 import colors from "../../../common/constants/colors";
 import { basicStyles, basicCompStyles } from "../../../common/styles/styleSheet";
+import CheckBox from 'react-native-checkbox';
+
 
 export default class ConfirmationUI extends PureComponent {
 
@@ -41,11 +42,11 @@ export default class ConfirmationUI extends PureComponent {
 
     render() {
         const { prescriptionUrl} = this.props;
-        return <View style={[basicCompStyles.fullSize, basicCompStyles.bgBaseColorLight, basicCompStyles.defaultPadding]}>
-            <Text style={basicStyles.textBig}>{"User details"}</Text>
-            <ScrollView style={basicCompStyles.fullSize} ref="scroll">
+        return <View style={[basicStyles.deviceFullViewLight, basicCompStyles.bgBaseColorLight, basicCompStyles.defaultPadding]}>
+            <Text style={basicStyles.textBig}>{"Delivery details"}</Text>
+            <ScrollView> 
                 <Image style={[basicStyles.bigImage, basicCompStyles.aliginSelfC, basicCompStyles.smallSpacingMarginT]} source={{uri : prescriptionUrl}}/>
-                <Text style={[basicStyles.textSmaller, basicCompStyles.smallSpacingMarginT]}>{"Name"}</Text>
+               <Text style={[basicStyles.textSmaller, basicCompStyles.smallSpacingMarginT]}>{"Name"}</Text>
                 <TextInput
                     ref="nameInput"
                     onSubmitEditing={(event) => { 
@@ -74,7 +75,7 @@ export default class ConfirmationUI extends PureComponent {
                     selectionColor={colors.CURSOR_COLOR}
                     style={basicStyles.textInputSmall}
                     onChangeText={value => this.setState({ deliveryPhoneNo : value })}
-                    placeholder={"Name"}
+                    placeholder={"Phone Number"}
                     placeholderTextColor={colors.PLACEHOLDER_COLOR} 
                     value={this.state.deliveryPhoneNo}
                 />
@@ -111,8 +112,12 @@ export default class ConfirmationUI extends PureComponent {
                     placeholder={"Additional message for delivery..."}
                     placeholderTextColor={colors.PLACEHOLDER_COLOR} 
                 />
-                <CheckBox style={{flex: 1, padding: 10}} onClick={()=> {this.setState({needPriceConfirmation: !this.state.needPriceConfirmation})}} isChecked={this.state.needPriceConfirmation} leftText={"Need price confirmation through call"} checkBoxColor={colors.UNDERLINE_COLOR}/>;
-            </ScrollView>
+                <CheckBox
+                label='Label'
+                checked={true}
+                onChange={(checked) => console.log('I am checked', checked)}
+                />
+            </ScrollView>  
             <TouchableOpacity style={[basicCompStyles.bgBaseColor, basicCompStyles.defaultPadding, basicCompStyles.defaultMarginTB, basicCompStyles.spacingMarginT, {height: 40, borderRadius: 20 }]} onPress={this.savePrescription} >
                 <Text style={[basicStyles.textWhiteSmall, basicCompStyles.alignTextCenter]}>{"Confirm Order"}</Text>
             </TouchableOpacity> 

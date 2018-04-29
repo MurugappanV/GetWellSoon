@@ -1,5 +1,5 @@
 import * as types from '../../common/redux/types';
-import { savePrescription } from '../graphql/quries';
+import { addPrescription } from '../graphql/quries';
 import client from '../../common/redux/apollo/client';
 
 export function savePrescription( billUrl, isConfirmed,message,deliveryAddress,deliveryName,deliveryPhoneNumber) {

@@ -53,7 +53,7 @@ class OrderUI extends PureComponent {
                 <Text style={[basicStyles.textWhiteSmall, basicCompStyles.alignTextCenter]}>{"  Select prescription  "}</Text>
             </TouchableOpacity>
         } else if(uploadStatus == generalConstants.LOADED) {
-            return <TouchableOpacity style={[basicCompStyles.bgBaseColor, basicCompStyles.defaultPadding, basicCompStyles.smallSpacingMarginT, {height: 40, borderRadius: 20 }]} onPress={() => {}} >
+            return <TouchableOpacity style={[basicCompStyles.bgBaseColor, basicCompStyles.defaultPadding, basicCompStyles.smallSpacingMarginT, {height: 40, borderRadius: 20 }]} onPress={() => {this.props.navigation.navigate("Confirmation")}} >
                 <Text style={[basicStyles.textWhiteSmall, basicCompStyles.alignTextCenter]}>{"Order medicine"}</Text>
             </TouchableOpacity>
         } else {

@@ -4,12 +4,14 @@ import HomeNavigator from "../../home";
 import Login from "../../login";
 import AboutUs from "../../aboutUs";
 import UserDetails from "../../userDetail";
+import Confirmation from "../../confirmation";
 
 const BaseNavigator = StackNavigator({
     Home: { screen: HomeNavigator },
     Login: { screen: Login },
     AboutUs: { screen: AboutUs},
     Details: { screen: UserDetails},
+    Confirmation: {screen: Confirmation}
 });
 
 const defaultGetStateForAction = BaseNavigator.router.getStateForAction;
