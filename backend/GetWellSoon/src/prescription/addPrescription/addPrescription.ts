@@ -10,15 +10,15 @@ interface EventData {
     deliveryPhoneNumber: string
 }
 
-interface Order {
+interface Pharmacy {
     id: string
     noOfOrders: number 
     orderLabelPrefix: string
 }
 
-interface Orders {
-    list: Order[]
-}
+// interface Orders {
+//     list: Order[]
+// }
 
 interface Result {
     id: string
@@ -36,19 +36,20 @@ export default async (event: FunctionEvent<EventData>) => {
         if(!(userId.length > 0)) {
             return { error: `No logged in user - ${event.context.auth}` };
         }
-        let orderInfo: Orders = await getOrderInfo(api).then(r => r.Orders);
-        let orderId: string = orderInfo.list[0].noOfOrders+"";
-        let nextOrderId: number = orderInfo.list[0].noOfOrders+1;
+        let orderInfo: Pharmacy = await getOrderInfo(api, "cjf7zjue562d40118n0cpj3l0").then(r => r.Pharmacy);
+        console.log("phar - ", orderInfo)
+        let orderId: string = orderInfo.noOfOrders+"";
+        let nextOrderId: number = orderInfo.noOfOrders+1;
         for(let i = orderId.length; i <= 6; i++) {
             orderId = "0" + orderId;
         }
-        orderId = orderInfo.list[0].orderLabelPrefix + orderId;
+        orderId = orderInfo.orderLabelPrefix + orderId;
         let orderDate = new Date();
         let result: Result = await savePrescription(api, orderId, orderDate.toISOString(), event.data.billUrl, event.data.message, event.data.isConfirmed, userId, event.data.deliveryAddress,event.data.deliveryPhoneNumber,event.data.deliveryName).then(r => r.Result);
         if(!(result.id != null && result.id.length > 0)) {
-            return { error: `Prescription save error - ${event.context.auth}` };
+            return { error: `Prescription save error ` };
         }
-        await updateOrderInfo(api, orderInfo.list[0].id, nextOrderId);
+        await updateOrderInfo(api, orderInfo.id, nextOrderId);
         //let userId: string | null = null
 
         return { data: { id: userId} };
@@ -59,10 +60,10 @@ export default async (event: FunctionEvent<EventData>) => {
 }
 
 
-async function getOrderInfo(api: GraphQLClient): Promise<{ Orders }> {
+async function getOrderInfo(api: GraphQLClient,id: string): Promise<{ Pharmacy }> {
     const query = `
-      query allPharmacies {
-        allPharmacies {
+      query Pharmacy($id: ID!) {
+        Pharmacy(id: $id) {
             id
             orderLabelPrefix
             noOfOrders
@@ -71,10 +72,10 @@ async function getOrderInfo(api: GraphQLClient): Promise<{ Orders }> {
     `
   
     const variables = {
-        
+        id,
     }
   
-    return api.request<{ Orders }>(query, variables)
+    return api.request<{ Pharmacy }>(query, variables)
 }
 
 async function savePrescription(api: GraphQLClient,orderId: string,orderDate: string,billUrl: string,message: string,isConfirmed: boolean,userId: string, deliveryAddress: string,deliveryPhoneNumber: string,deliveryName: string): Promise<{ Result }> {
