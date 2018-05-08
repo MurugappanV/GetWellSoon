@@ -112,10 +112,7 @@ export default class ConfirmationUI extends PureComponent {
                     placeholder={"Additional message for delivery..."}
                     placeholderTextColor={colors.PLACEHOLDER_COLOR} 
                 />
-                <CheckBox
-                label='Label'
-                checked={true}
-                onChange={(checked) => console.log('I am checked', checked)}
+                <CheckBox label='Call for price confirmation' containerStyle={{marginTop: 10}} checkboxStyle={{height: 15, width: 15}} checked={this.state.needPriceConfirmation} onChange={(checked) => this.setState({needPriceConfirmation : checked})}
                 />
             </ScrollView>  
             <TouchableOpacity style={[basicCompStyles.bgBaseColor, basicCompStyles.defaultPadding, basicCompStyles.defaultMarginTB, basicCompStyles.spacingMarginT, {height: 40, borderRadius: 20 }]} onPress={this.savePrescription} >

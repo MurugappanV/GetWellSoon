@@ -4,11 +4,11 @@ import client from '../../common/redux/apollo/client';
 
 export function savePrescription( billUrl, isConfirmed,message,deliveryAddress,deliveryName,deliveryPhoneNumber) {
     return (dispatch, getState) => {
-        // console.log(`${userId}----${name}----${email}----${photoUrl}----${phoneNumber}----${dob}`)
+        console.log(`${billUrl}----${isConfirmed}----${message}----${deliveryAddress}----${deliveryName}----${deliveryPhoneNumber}`)
         dispatch({type: types.SAVE_PRESCP_LOADING});
         client.mutate({
-            mutation: savePrescription,
-            variables: {billUrl, isConfirmed,message,deliveryAddress,deliveryName,deliveryPhoneNumber}
+            mutation: addPrescription,
+            variables: {billUrl: billUrl, isConfirmed: isConfirmed,message: message,deliveryAddress: deliveryAddress,deliveryName: deliveryName,deliveryPhoneNumber: deliveryPhoneNumber}
         }).then((resp) => {
             if (resp.data != null) {
                 dispatch({type: types.SAVE_PRESCP_LOADED});
