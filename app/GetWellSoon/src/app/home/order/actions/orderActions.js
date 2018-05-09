@@ -22,3 +22,9 @@ export function uploadingImageUrl() {
         dispatch({type: types.UPLOADING_PRESCRIPTION});
     }
 }
+
+export function clearPrescription() {
+    return (dispatch, getState) => {
+        dispatch({type: types.CLEAR_PRESCP});
+    }
+}

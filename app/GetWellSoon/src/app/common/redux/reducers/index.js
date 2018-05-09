@@ -4,11 +4,13 @@ import * as LoginReducer from '../../../login/reducer/LoginReducer';
 import * as userDetReducer from '../../../userDetail/reducer/userDetReducer';
 import * as confPresReducer from '../../../confirmation/reducer/confPresReducer';
 import * as OrderReducer from '../../../home/order/reducer/OrderReducer';
+import * as historyReducer from '../../../home/history/reducer/historyReducer';
 
 export default combineReducers(Object.assign(
     handleException,
     LoginReducer,
     OrderReducer,
     userDetReducer,
-    confPresReducer
+    confPresReducer,
+    historyReducer
 ));

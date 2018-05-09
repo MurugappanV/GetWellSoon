@@ -53,9 +53,20 @@ class OrderUI extends PureComponent {
                 <Text style={[basicStyles.textWhiteSmall, basicCompStyles.alignTextCenter]}>{"  Select prescription  "}</Text>
             </TouchableOpacity>
         } else if(uploadStatus == generalConstants.LOADED) {
-            return <TouchableOpacity style={[basicCompStyles.bgBaseColor, basicCompStyles.defaultPadding, basicCompStyles.smallSpacingMarginT, {height: 40, borderRadius: 20 }]} onPress={() => {this.props.navigation.navigate("Confirmation")}} >
-                <Text style={[basicStyles.textWhiteSmall, basicCompStyles.alignTextCenter]}>{"Order medicine"}</Text>
-            </TouchableOpacity>
+            return <View>
+                <TouchableOpacity style={[basicCompStyles.bgBaseColor, basicCompStyles.defaultPadding, basicCompStyles.smallSpacingMarginT, {height: 40, borderRadius: 20 }]} onPress={() => {
+                        this.props.clearPrescription()
+                        this.props.navigation.navigate("Confirmation")
+                    }} >
+                    <Text style={[basicStyles.textWhiteSmall, basicCompStyles.alignTextCenter]}>{"Order medicine"}</Text>
+                </TouchableOpacity>
+                <TouchableOpacity style={basicCompStyles.defaultPadding} onPress={() => {
+                        this.props.clearPrescriptionImageUrl()
+                        this.selectImage()
+                    }} > 
+                    <Text style={[basicStyles.textSmallerLink, basicCompStyles.aliginSelfC]}>{"Change prescription"}</Text>
+                </TouchableOpacity>
+            </View>
         } else {
             return <TouchableOpacity style={[basicCompStyles.bgBaseColor, basicCompStyles.defaultPadding, basicCompStyles.smallSpacingMarginT, {height: 40, borderRadius: 20 }]} onPress={() => {}} >
                 <Text style={[basicStyles.textWhiteSmall, basicCompStyles.alignTextCenter]}>{"Select prescription"}</Text>

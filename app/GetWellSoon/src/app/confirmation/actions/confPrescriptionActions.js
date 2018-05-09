@@ -22,9 +22,14 @@ export function savePrescription( billUrl, isConfirmed,message,deliveryAddress,d
     }
 }
 
+export function clearPrescriptionUrl() {
+    return (dispatch, getState) => {
+        dispatch({type: types.CLEAR_PRESCRIPTION_URL});
+    }
+}
+
 export function clearPrescription() {
     return (dispatch, getState) => {
         dispatch({type: types.CLEAR_PRESCP});
-        dispatch({type: types.CLEAR_PRESCRIPTION_URL});
     }
 }
