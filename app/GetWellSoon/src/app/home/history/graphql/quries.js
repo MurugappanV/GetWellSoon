@@ -15,6 +15,7 @@ export const userPrescriptionsQuery = gql`
             prescriptionUrl
             status
             logs {
+                createdAt
                 action
                 message
                 status
@@ -43,6 +44,7 @@ export const userPrescriptionsSubscription = gql`
                 prescriptionUrl
                 status
                 logs {
+                    createdAt
                     action
                     message
                     status

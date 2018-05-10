@@ -2,7 +2,7 @@ import React, {PureComponent} from "react";
 import { View, Text, TextInput, TouchableOpacity, Image, KeyboardAvoidingView, ScrollView, ActivityIndicator } from 'react-native';
 import DatePicker from 'react-native-datepicker';
 import { pickImage } from "../../common/utils/imagePicker";
-import { basicStyles , basicCompStyles , width25pc } from "../../../common/styles/styleSheet";
+import { basicStyles , basicCompStyles , width25pc, width20pc } from "../../../common/styles/styleSheet";
 import * as generalConstants from "../../../common/constants/generalConstants";
 import colors from '../../../common/constants/colors';
 import RNGooglePlaces from 'react-native-google-places';
@@ -105,14 +105,14 @@ export default class UserDetailUI extends PureComponent {
     renderImage = (uploadStatus, profilePicUrl) => {
         if(uploadStatus == 0 || uploadStatus == generalConstants.ERROR) {
             return <TouchableOpacity onPress={this.selectImage}>
-                <Image style={[basicStyles.bigImage, basicCompStyles.aliginSelfC, basicCompStyles.smallSpacingMarginT, {borderRadius: width25pc}]} source={require('../../../../assets/images/profile.png')}/>
+                <Image style={[basicStyles.profImage, basicCompStyles.aliginSelfC, basicCompStyles.smallSpacingMarginT, {borderRadius: width20pc}]} source={require('../../../../assets/images/profile.png')}/>
             </TouchableOpacity>
         } else if(uploadStatus == generalConstants.LOADED) {
             return <TouchableOpacity onPress={this.selectImage}>
-                <Image style={[basicStyles.bigImage, basicCompStyles.aliginSelfC, basicCompStyles.smallSpacingMarginT, {borderRadius: width25pc}]} source={{uri : profilePicUrl}}/>
+                <Image style={[basicStyles.profImage, basicCompStyles.aliginSelfC, basicCompStyles.smallSpacingMarginT, {borderRadius: width20pc}]} source={{uri : profilePicUrl}}/>
             </TouchableOpacity>
         } else {
-            return <View style={[basicStyles.bigImage, basicCompStyles.flexColumnCC, basicCompStyles.aliginSelfC, basicCompStyles.smallSpacingMarginT, {borderRadius: width25pc}]}>
+            return <View style={[basicStyles.profImage, basicCompStyles.flexColumnCC, basicCompStyles.aliginSelfC, basicCompStyles.smallSpacingMarginT, {borderRadius: width25pc}]}>
                 <ActivityIndicator size="large" color={colors.PROGRESS_BAR_COLOR} />
                 <Text style={[basicStyles.textSmallerLink, basicCompStyles.defaultPadding]}>{"Uploading image ..."}</Text>
             </View>

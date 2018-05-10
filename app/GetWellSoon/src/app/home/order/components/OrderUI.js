@@ -34,7 +34,7 @@ class OrderUI extends PureComponent {
     renderImage = (uploadStatus, prescriptionUrl) => {
         console.log("upload status", uploadStatus);
         if(uploadStatus == 0 || uploadStatus == generalConstants.ERROR) {
-            return <Image style={[basicStyles.bigImage]} source={require('../../../../../assets/images/photo.png')}/>
+            return <Image style={[basicStyles.bigImage]} source={require('../../../../../assets/images/photo.jpg')}/>
         } else if(uploadStatus == generalConstants.LOADED) {
             return <TouchableOpacity onPress={this.viewImage}>
                 <Image style={[basicStyles.bigImage]} source={{uri : prescriptionUrl}}/>
