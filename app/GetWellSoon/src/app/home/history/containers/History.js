@@ -12,13 +12,13 @@ class History extends PureComponent {
     }
 
     componentWillMount() {
-        if(this.props.userId != null && prescriptionListStatus != generalConstants.LOADED) {
+        if(this.props.userId != null && this.props.prescriptionListStatus != generalConstants.LOADED) {
             this.props.setPrescriptionList(nextProps.userId)
         }
     }
 
     componentWillReceiveProps(nextProps) {
-        if(nextProps.userId != null && prescriptionListStatus != generalConstants.LOADED) {
+        if(nextProps.userId != null && nextProps.prescriptionListStatus != generalConstants.LOADED) {
             nextProps.setPrescriptionList(nextProps.userId)
         }
     }

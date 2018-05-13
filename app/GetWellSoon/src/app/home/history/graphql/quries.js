@@ -5,6 +5,7 @@ export const userPrescriptionsQuery = gql`
         allPrescriptions(filter: {customer:{id: $id}}) {
             amount
             billUrl
+            billNo
             customerMessage
             deliveryName
             deliveryAddress
@@ -18,6 +19,7 @@ export const userPrescriptionsQuery = gql`
                 createdAt
                 action
                 message
+                url
                 status
                 user {
                     name
@@ -34,6 +36,7 @@ export const userPrescriptionsSubscription = gql`
             node {
                 amount
                 billUrl
+                billNo
                 customerMessage
                 deliveryName
                 deliveryAddress
@@ -47,6 +50,7 @@ export const userPrescriptionsSubscription = gql`
                     createdAt
                     action
                     message
+                    url
                     status
                     user {
                         name

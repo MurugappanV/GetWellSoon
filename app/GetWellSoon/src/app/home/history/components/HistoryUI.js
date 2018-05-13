@@ -7,7 +7,7 @@ import HistoryDataUI from "./HistoryDataUI";
 class HistoryUI extends PureComponent {
 
     renderEmpty = (message) => {
-        <View style={basicStyles.tabContainer}>
+        return <View style={basicStyles.tabContainer}>
             <Image style={basicStyles.bigImage} source={require('../../../../../assets/images/empty.png')} />
             <Text style={[basicStyles.textSmall]}>{message}</Text>
         </View>
@@ -18,15 +18,13 @@ class HistoryUI extends PureComponent {
         switch(prescriptionListStatus) {
             case generalConstants.LOADED:
             case generalConstants.LOADING:
-                <HistoryDataUI {...props}/>
-                break
+                return <HistoryDataUI {...props}/>
             case 0:
-                this.renderEmpty("No orders yet")
-                break
+                return this.renderEmpty("No orders yet")
             case generalConstants.ERROR:
-                this.renderEmpty("Sorry, some problem occured")
-                break
+                return this.renderEmpty("Sorry, some problem occured")
         }
+        // return <View></View>
     }
 
     render() {

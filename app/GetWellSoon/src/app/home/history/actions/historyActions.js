@@ -1,6 +1,7 @@
 import * as types from '../../../common/redux/types';
+import client from '../../../common/redux/apollo/client';
 import {userPrescriptionsQuery, userPrescriptionsSubscription} from '../graphql/quries';
-import { mapPrescriptionRawDetails, addPrescriptionSubstripionDetails } from '../../../common/redux/manipulations/prescriptionConvertor';
+import { mapPrescriptionRawDetails, addPrescriptionSubstripionDetails, mapPrescriptionToSectionList } from '../../../common/redux/manipulations/prescriptionConvertor';
 // import 
 
 export function setPrescriptionList(userId) {

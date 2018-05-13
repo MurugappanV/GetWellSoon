@@ -24,11 +24,12 @@ networkInterface.use([{
 }]);
 
 const wsClient = new SubscriptionClient(`wss://subscriptions.ap-northeast-1.graph.cool/v1/cjf6qzg652ivd0113qx2h0wdt`, {
-  reconnect: true,
-  connectionParams: {
-    // Pass any arguments you want for initialization
-  }
+  reconnect: true
 })
+
+//   connectionParams: {
+//     // Pass any arguments you want for initialization
+//   }
 
 const networkInterfaceWithSubscriptions = addGraphQLSubscriptions(
   networkInterface,

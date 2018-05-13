@@ -32,13 +32,13 @@ export const mapPrescriptionToSectionList = (inData) => {
 }
 
 export const addPrescriptionSubstripionDetails = (inData, newData) => {
-    if(newData.Prescription.mutation == CREATED) {
+    if(newData.Prescription.mutation == "CREATED") {
         prescriptionList = []
         if(inData != null) {
             prescriptionList = inData.prescriptionList.map(presObj => {
                 return {
-                    ...presObj,
-                    logs: presObj.logs.map(logObj => {
+                    ...presObj.title,
+                    logs: presObj.title.logs.map(logObj => {
                         return {
                             ...logObj,
                         }
@@ -55,14 +55,14 @@ export const addPrescriptionSubstripionDetails = (inData, newData) => {
                 }
             })
         }
-        prescriptionList.add(pres)
+        prescriptionList.push(pres)
         return {
             prescriptionList: prescriptionList
         }
     } else {
         return {
             prescriptionList: inData.prescriptionList.map(presObj => {
-                if(presObj.orderId == newData.Prescription.node.orderId) {
+                if(presObj.title.orderId == newData.Prescription.node.orderId) {
                     return {
                         ...newData.Prescription.node,
                         logs: newData.Prescription.node.logs.map(logObj => {
@@ -74,8 +74,8 @@ export const addPrescriptionSubstripionDetails = (inData, newData) => {
                     }
                 } else {
                     return {
-                        ...presObj,
-                        logs: presObj.logs.map(logObj => {
+                        ...presObj.title,
+                        logs: presObj.title.logs.map(logObj => {
                             return {
                                 ...logObj,
                             }
