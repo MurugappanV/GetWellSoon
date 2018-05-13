@@ -84,7 +84,7 @@ async function getPharmacyOrder(api: GraphQLClient, id: string): Promise<{ Pharm
 async function addPres(api: GraphQLClient, orderId: string,orderDate: string,billUrl: string,message: string,isConfirmed: boolean,userId: string, deliveryAddress: string,deliveryPhoneNumber: string,deliveryName: string, action: string): Promise<string> {
     const query = `
       mutation createPrescription($orderId: String!,$orderDate: String!,$billUrl: String!,$message: String!,$isConfirmed: Boolean!,$userId: ID!,$deliveryAddress: String!,$deliveryPhoneNumber: String!,$deliveryName: String!, $action: String!) {
-        createPrescription(orderId: $orderId, orderDate:$orderDate, billUrl: $billUrl, customerMessage: $message, isConfirmed: $isConfirmed, customerId: $userId, deliveryAddress: $deliveryAddress, deliveryPhoneNumber: $deliveryPhoneNumber, deliveryName: $deliveryName, logs: {message: $message, status: PLACED,action: $action, userId: $userId}) {
+        createPrescription(orderId: $orderId, orderDate:$orderDate, prescriptionUrl: $billUrl, customerMessage: $message, isConfirmed: $isConfirmed, customerId: $userId, deliveryAddress: $deliveryAddress, deliveryPhoneNumber: $deliveryPhoneNumber, deliveryName: $deliveryName, logs: {message: $message, url: $billUrl, status: PLACED,action: $action, userId: $userId}) {
             id
         }
       }

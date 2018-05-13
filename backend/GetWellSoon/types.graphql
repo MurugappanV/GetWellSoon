@@ -28,6 +28,7 @@ type Prescription @model {
 
   orderId: String!
   orderDate: String
+  billNo: String
   amount: Float @defaultValue(value: -1)
   prescriptionUrl: String
   billUrl: String
@@ -49,6 +50,7 @@ type Log @model {
   prescription: Prescription! @relation(name: "PrescriptionLogsRelation")
   action: String
   message: String
+  url: String
   status: StatusType!
   user: User! @relation(name: "LogsUserRelation")
 }
