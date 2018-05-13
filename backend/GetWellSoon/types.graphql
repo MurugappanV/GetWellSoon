@@ -89,6 +89,7 @@ enum AccessType {
 
 enum StatusType {
     PLACED,
+    BILLED,
     SHIPPED,
     DELIVERED,
     CANCELLED,
