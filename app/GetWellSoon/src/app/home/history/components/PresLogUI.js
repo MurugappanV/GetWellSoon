@@ -6,9 +6,20 @@ import *  as generalConstants from '../../../../common/constants/generalConstant
 class PresLogUI extends PureComponent {
 
     render() {
-        return <View style={basicStyles.tabContainer}>
-            <Image style={basicStyles.bigImage} source={require('../../../../../assets/images/empty.png')} />
-            <Text style={[basicStyles.textSmall]}>No orders yet</Text>
+        const {item} = this.props;
+        let date = new Date(item.createdAt).toLocaleDateString('en-IN', {year: 'numeric' , month: 'long', day: 'numeric' })
+        date = date.replace(" ", "-");
+        return <View style={basicStyles.presSubItemContainer}>
+            <View style={basicStyles.presSubImageContainer}>
+                <Image style={[basicStyles.mediumImage]} source={{uri : item.url}}/>
+            </View>
+            <View style={basicStyles.presSubInfoContainer}>
+                <Text style={[basicStyles.textSmallDark, basicCompStyles.defaultPadding]}>{item.action}</Text>
+                <Text style={[basicStyles.textSmallDark, basicCompStyles.defaultPadding]}>{item.message == null ? "" : item.message}</Text>
+            </View>
+            <View style={basicStyles.presSubDateContainer}>
+                <Text style={[basicStyles.textSmallDark, basicCompStyles.defaultPadding]}>{date}</Text>
+            </View>
         </View>
     }
 }

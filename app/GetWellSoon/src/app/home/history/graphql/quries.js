@@ -3,6 +3,7 @@ import gql from 'graphql-tag';
 export const userPrescriptionsQuery = gql`
     query getUserPrescriptions($id : ID!) {
         allPrescriptions(filter: {customer:{id: $id}}) {
+            id
             amount
             billUrl
             billNo
@@ -13,9 +14,11 @@ export const userPrescriptionsQuery = gql`
             isConfirmed
             orderDate
             orderId
+            createdAt
             prescriptionUrl
             status
             logs {
+                id
                 createdAt
                 action
                 message
@@ -34,6 +37,7 @@ export const userPrescriptionsSubscription = gql`
         Prescription(filter: {node: {customer:{id: $id}}}) {
             mutation
             node {
+                id
                 amount
                 billUrl
                 billNo
@@ -44,9 +48,11 @@ export const userPrescriptionsSubscription = gql`
                 isConfirmed
                 orderDate
                 orderId
+                createdAt
                 prescriptionUrl
                 status
                 logs {
+                    id
                     createdAt
                     action
                     message

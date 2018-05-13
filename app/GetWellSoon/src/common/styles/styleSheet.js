@@ -34,6 +34,9 @@ const sizes = StyleSheet.create({
     fullDeviceWidth: {
         width: fullWidth
     },
+    width20pc: {
+        width: width20pc
+    },
     homeHeaderContainer: {
         height: statusBarHeight + headerHeight,
         width: fullWidth,
@@ -93,6 +96,12 @@ export const basicCompStyles = StyleSheet.create({
     darkTextColor: {
         color: colors.DARK_TEXT_COLOR
     },
+    whiteBgColor: {
+        backgroundColor: colors.LIGHT_LIST_COLOR
+    },
+    whiteTextColor: {
+        color: colors.HEADER_TEXT_COLOR
+    },
 
 
     fullSize: {
@@ -144,6 +153,9 @@ export const basicCompStyles = StyleSheet.create({
 
     defaultPadding: {
         padding: 10
+    },
+    defaultPaddingTop: {
+        paddingTop: 10
     },
     bigPadding: {
         padding: 30
@@ -261,6 +273,11 @@ export const basicStyles = {
         compStyles.mainHeaderTextSmall,
         fonts.default
     ],
+    textSmallerDark: [
+        basicCompStyles.darkTextColor,
+        compStyles.mainHeaderTextSmaller,
+        fonts.default
+    ],
     textSmallOrange: [
         basicCompStyles.orangeTextColor,
         compStyles.mainHeaderTextSmaller,
@@ -303,6 +320,11 @@ export const basicStyles = {
         compStyles.mainHeaderTextSmall,
         fonts.default
     ],
+    textWhiteSmaller: [
+        basicCompStyles.whiteTextColor,
+        compStyles.mainHeaderTextSmaller,
+        fonts.default
+    ],
     tabBar: [
         sizes.tabBar,
         basicCompStyles.bgBaseColor,
@@ -316,10 +338,46 @@ export const basicStyles = {
         basicCompStyles.bigPadding,
         sizes.fullDeviceWidth
     ],
+    sectionContainer: [
+        sizes.fullViewSize
+    ],
     tabContainer: [
         basicCompStyles.bgBaseColorLight, 
         basicCompStyles.fullSize,
         basicCompStyles.flexColumnCC
+    ],
+    listSectionContainer: [
+        basicCompStyles.whiteBgColor, 
+        basicCompStyles.flexRowNC
+    ],
+    prescriptionDateContainer: [
+        basicCompStyles.flexColumnCC,
+        basicCompStyles.defaultPadding,
+        basicCompStyles.width20pc
+    ],
+    prescriptionStatusContainer: [
+        basicCompStyles.flexColumnCC,
+        basicCompStyles.defaultPadding,
+        basicCompStyles.width20pc
+    ],
+    prescriptionInfoContainer: [
+        basicCompStyles.flexColumnCN,
+        basicCompStyles.defaultPadding
+    ],
+    presSubItemContainer: [
+        basicCompStyles.flexRowNC
+    ],
+    presSubImageContainer: [
+        basicCompStyles.flexColumnCC,
+        basicCompStyles.defaultPadding
+    ],
+    presSubInfoContainer: [
+        basicCompStyles.flexColumnCC,
+        basicCompStyles.defaultPadding
+    ],
+    presSubDateContainer: [
+        basicCompStyles.flexColumnCN,
+        basicCompStyles.defaultPadding
     ],
     bigImage: [
         sizes.bigImage

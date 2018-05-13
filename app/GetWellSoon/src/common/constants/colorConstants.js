@@ -29,3 +29,4 @@ export const UNDERLINE_COLOR = DARK_ORANGE;
 export const CURSOR_COLOR = GREY;
 export const PLACEHOLDER_COLOR = DARK_BLUE;
 export const PROGRESS_BAR_COLOR = ORANGE;
+export const LIGHT_LIST_COLOR = WHITE;

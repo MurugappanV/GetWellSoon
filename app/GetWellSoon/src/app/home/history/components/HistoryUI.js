@@ -1,7 +1,8 @@
 import React, {PureComponent} from "react";
-import {View, Image, Text} from 'react-native';
+import {View, Image, Text, ActivityIndicator} from 'react-native';
 import { basicStyles, basicCompStyles } from "../../../../common/styles/styleSheet";
 import *  as generalConstants from '../../../../common/constants/generalConstants';
+import colors from "../../../../common/constants/colors";
 import HistoryDataUI from "./HistoryDataUI";
 
 class HistoryUI extends PureComponent {
@@ -13,12 +14,24 @@ class HistoryUI extends PureComponent {
         </View>
     }
 
+    renderLoading = (message) => {
+        return <View style={basicStyles.tabContainer}>
+            <ActivityIndicator size="large" color={colors.PROGRESS_BAR_COLOR} />
+            <Text style={[basicStyles.textSmallerLink, basicCompStyles.defaultPadding]}>{message}</Text>
+        </View>
+    }
+
     renderHistory = (props) => {
-        const {prescriptionListStatus} = props
+        const {prescriptionListStatus, prescriptionData} = props
         switch(prescriptionListStatus) {
             case generalConstants.LOADED:
+                if(prescriptionData.prescriptionList != null && prescriptionData.prescriptionList.length > 0) {
+                    return <HistoryDataUI {...props}/>
+                } else {
+                    return this.renderEmpty("No orders yet")
+                }
             case generalConstants.LOADING:
-                return <HistoryDataUI {...props}/>
+                return this.renderLoading("Your prescriptions loading...")
             case 0:
                 return this.renderEmpty("No orders yet")
             case generalConstants.ERROR:
