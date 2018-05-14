@@ -20,6 +20,7 @@ export function setPrescriptionList(userId) {
         }).catch( (exception) => {
             dispatch({ type: types.EXCEPTION, exception: exception});
         });
+        client.unsubscribeAll();
         client.subscribe({
             query: userPrescriptionsSubscription,
             variables: {id: userId}

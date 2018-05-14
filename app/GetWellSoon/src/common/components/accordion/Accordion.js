@@ -2,6 +2,7 @@ import React, {PureComponent} from "react";
 import { FlatList} from "react-native";
 import Collapsible from 'react-native-collapsible';
 import CollapseViewWithHeader from './CollapseViewWithHeader';
+import { basicStyles, basicCompStyles } from "../../styles/styleSheet";
 
 class Accordion extends PureComponent {
     constructor(props) {
@@ -16,6 +17,7 @@ class Accordion extends PureComponent {
             data={this.props.data}
             keyExtractor={(item, index) => item.title.id}
             renderItem={this.renderItemCollapsible}
+            style={this.props.style}
         />
     }
 }

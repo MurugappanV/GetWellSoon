@@ -8,17 +8,21 @@ import Accordion from '../../../../common/components/accordion';
 import PresLogListUI from "./PresLogListUI";
 
 class HistoryDataUI extends PureComponent {
-    renderHeader = (data, isCollapsed) => <View></View>
+    renderHeader = (data, isCollapsed) => <PresItemUI title={data.title}/>
         
-    renderContent = (data, isCollapsed) => <View></View>
+    renderContent = (data, isCollapsed) => <PresLogListUI list={data.data} title={data.title}/>
     
     render() {
-        
-        
+        return <View style={basicStyles.tabContainer}>
+            <Accordion style={[basicStyles.sectionContainer, basicCompStyles.fullSize]} data={this.props.prescriptionData.prescriptionList}  itemHeader={this.renderHeader.bind(this)} itemContent={this.renderContent.bind(this)} />
+        </View>
+    }
+}
 
-        return <View style={{height: 200, width: 200}}>
-            <Accordion style={{height: 200, width: 200}} data={this.props.prescriptionData.prescriptionList}  itemHeader={this.renderHeader} itemContent={this.renderContent} />
-            {/* <SectionList   extraData={this.state.isCardView}
+export default HistoryDataUI;
+
+
+{/* <SectionList   extraData={this.state.isCardView}
                 renderItem={({item, index, section}) => <PresLogUI item={item} index={index} section={section}/>}
                 renderSectionHeader={({section: {title}}) => <PresItemUI title={title}/>}
                 sections={this.props.prescriptionData.prescriptionList}
@@ -29,8 +33,3 @@ class HistoryDataUI extends PureComponent {
                 <PresItemUI title={data.title}/>
                 <PresLogListUI list={data.data}/>
             /> */}
-        </View>
-    }
-}
-
-export default HistoryDataUI;

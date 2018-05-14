@@ -37,6 +37,9 @@ const sizes = StyleSheet.create({
     width20pc: {
         width: width20pc
     },
+    subListImagewidth: {
+        width: 55
+    },
     homeHeaderContainer: {
         height: statusBarHeight + headerHeight,
         width: fullWidth,
@@ -65,6 +68,10 @@ const sizes = StyleSheet.create({
     profImage: {
         height: width40pc,
         width: width40pc
+    },
+    displayImage: {
+        height: width20pc,
+        width: width20pc
     },
     tabContainer: {
         minHeight: tabFullHeight
@@ -339,7 +346,7 @@ export const basicStyles = {
         sizes.fullDeviceWidth
     ],
     sectionContainer: [
-        sizes.fullViewSize
+        sizes.fullDeviceWidth
     ],
     tabContainer: [
         basicCompStyles.bgBaseColorLight, 
@@ -368,16 +375,19 @@ export const basicStyles = {
         basicCompStyles.flexRowNC
     ],
     presSubImageContainer: [
-        basicCompStyles.flexColumnCC,
-        basicCompStyles.defaultPadding
+        basicCompStyles.flexColumnCN,
+        basicCompStyles.defaultPadding,
+        sizes.subListImagewidth
     ],
     presSubInfoContainer: [
-        basicCompStyles.flexColumnCC,
-        basicCompStyles.defaultPadding
+        basicCompStyles.flexColumnCN,
+        basicCompStyles.defaultPadding,
+        basicCompStyles.fullSize
     ],
     presSubDateContainer: [
         basicCompStyles.flexColumnCN,
-        basicCompStyles.defaultPadding
+        basicCompStyles.defaultPadding,
+        sizes.width20pc
     ],
     bigImage: [
         sizes.bigImage
@@ -385,6 +395,9 @@ export const basicStyles = {
     profImage: [
         sizes.profImage
     ], 
+    displayImage: [
+        sizes.displayImage
+    ],
     mediumImage: [
         sizes.mediumImage
     ],

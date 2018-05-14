@@ -1,13 +1,14 @@
 import React, {PureComponent} from "react";
-import { FlatList, ScrollView, View, TextInput, Image, StyleSheet, Text, TouchableHighlight, TouchableOpacity} from "react-native";
+import { FlatList, ScrollView, View, TextInput, Image, StyleSheet, Text, TouchableHighlight, TouchableOpacity, TouchableWithoutFeedback} from "react-native";
 import {connect} from 'react-redux';
 import Collapsible from 'react-native-collapsible';
+import colors from "../../constants/colors";
 
 class CollapseViewWithHeader extends PureComponent {
     constructor () {
         super()
         this.onHeaderPress = this.onHeaderPress.bind(this)
-        this.state = { isCollapsed: false, }
+        this.state = { isCollapsed: true, }
     }
 
     onHeaderPress = () => {
@@ -16,11 +17,11 @@ class CollapseViewWithHeader extends PureComponent {
 
     render() {
         return <View >
-            <TouchableOpacity onPress={this.onHeaderPress} >  {/* underlayColor={Colors.DARK_HIGHLIGHT_COLOR} */}
-                {/* {this.props.header(this.props.data, this.state.isCollapsed)} */}
-            </TouchableOpacity>
+            <TouchableHighlight onPress={this.onHeaderPress} underlayColor={colors.HIGHLIGHT_COLOR}>  
+                {this.props.header(this.props.data, this.state.isCollapsed)}
+            </TouchableHighlight>
             <Collapsible collapsed={this.state.isCollapsed}>
-                {/* {this.props.content(this.props.data, this.state.isCollapsed)} */}
+                {this.props.content(this.props.data, this.state.isCollapsed)}
             </Collapsible>
         </View> 
         
@@ -29,8 +30,9 @@ class CollapseViewWithHeader extends PureComponent {
 
 export default CollapseViewWithHeader;
 
-
-
+{/* underlayColor={Colors.DARK_HIGHLIGHT_COLOR} */}
+{/* {this.props.header(this.props.data, this.state.isCollapsed)} */}
+{/* {this.props.content(this.props.data, this.state.isCollapsed)} */}
 
         // <ExpanableList style={{paddingLeft: 5, paddingTop: 5, paddingRight: 5, paddingBottom: 5, backgroundColor: 'white'}}
         //     dataSource={this.MockData}
