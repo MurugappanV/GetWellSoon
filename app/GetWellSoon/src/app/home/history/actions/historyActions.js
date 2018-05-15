@@ -1,5 +1,5 @@
 import * as types from '../../../common/redux/types';
-import client from '../../../common/redux/apollo/client';
+import client, {wsClient} from '../../../common/redux/apollo/client';
 import {userPrescriptionsQuery, userPrescriptionsSubscription} from '../graphql/quries';
 import { mapPrescriptionRawDetails, addPrescriptionSubstripionDetails, mapPrescriptionToSectionList } from '../../../common/redux/manipulations/prescriptionConvertor';
 // import 
@@ -20,19 +20,23 @@ export function setPrescriptionList(userId) {
         }).catch( (exception) => {
             dispatch({ type: types.EXCEPTION, exception: exception});
         });
-        client.unsubscribeAll();
-        client.subscribe({
-            query: userPrescriptionsSubscription,
-            variables: {id: userId}
-        }).subscribe({
-            next(data) {
-                dispatch({type: types.SET_PRESCRIPTION_LIST, data: mapPrescriptionToSectionList(addPrescriptionSubstripionDetails(getState().prescriptionList, data))});
-            },
-            error(error) {
-                console.error('Subscription callback with error: ', error)
-            },
-        })
+        subscribe(dispatch, getState, userId)
     }
+}
+
+export function subscribe(dispatch, getState, userId) {
+    wsClient.unsubscribeAll();
+    client.subscribe({
+        query: userPrescriptionsSubscription,
+        variables: {id: userId}
+    }).subscribe({
+        next(data) {
+            dispatch({type: types.SET_PRESCRIPTION_LIST, data: mapPrescriptionToSectionList(addPrescriptionSubstripionDetails(getState().prescriptionList, data))});
+        },
+        error(error) {
+            console.error('Subscription callback with error: ', error)
+        },
+    })
 }
 
 export function clearPrescriptionList() {
