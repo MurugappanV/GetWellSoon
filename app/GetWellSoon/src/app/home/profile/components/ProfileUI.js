@@ -1,5 +1,5 @@
 import React, {PureComponent} from "react";
-import {View, Image, Text, TouchableOpacity, ScrollView} from 'react-native';
+import {View, Image, Text, TouchableOpacity, ScrollView, Alert} from 'react-native';
 import { basicStyles, basicCompStyles, width20pc } from "../../../../common/styles/styleSheet";
 
 function getAge(dateString) 
@@ -36,6 +36,18 @@ class ProfileUI extends PureComponent {
             return <Image style={[basicStyles.mediumImage, basicCompStyles.defaultMarginSmall]} source={require('../../../../../assets/images/others.png')}/>
         }
     }
+
+    signOut = () => {
+        Alert.alert(
+            'Confirmation',
+            `Do you want to Sign out ?`,
+            [
+              {text: 'No', onPress: () => {}},
+              {text: 'Yes', onPress: () => {this.props.navigation.navigate("Login", {isSignOut: true})}},
+            ],
+            { cancelable: true }
+        )
+    }
     //userDetails.dateOfBirth userDetails.gender
     render() {
         let {navigation, userDetails} = this.props
@@ -60,7 +72,7 @@ class ProfileUI extends PureComponent {
             <TouchableOpacity style={[basicCompStyles.bgBaseColor, basicCompStyles.aliginSelfS, basicCompStyles.defaultPadding, basicCompStyles.smallSpacingMarginT, {height: 40, borderRadius: 20 }]} onPress={() => {navigation.navigate("Details")}} >
                 <Text style={[basicStyles.textWhiteSmall, basicCompStyles.alignTextCenter]}>{"Edit"}</Text>
             </TouchableOpacity> 
-            <TouchableOpacity onPress={() => {}} > 
+            <TouchableOpacity onPress={this.signOut} > 
                 <Text style={[basicStyles.textSmallerLink, basicCompStyles.aliginSelfC]}>{"Sign Out"}</Text>
             </TouchableOpacity>
             {/* <View style={[basicCompStyles.flexRowSaN, basicCompStyles.aliginSelfS]}>

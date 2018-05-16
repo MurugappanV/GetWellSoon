@@ -13,7 +13,7 @@ class History extends PureComponent {
 
     componentWillMount() {
         if(this.props.userId != null && this.props.prescriptionListStatus != generalConstants.LOADED) {
-            this.props.setPrescriptionList(nextProps.userId)
+            this.props.setPrescriptionList(this.props.userId)
         }
     }
 
@@ -23,12 +23,18 @@ class History extends PureComponent {
         }
     }
 
+    refreshList = () => {
+        if(this.props.userId != null) {
+            this.props.setPrescriptionList(this.props.userId)
+        }
+    }
+
     // componentWillUnmount() {
 
     // }
 
     render() {
-        return <HistoryUI {...this.props}/>
+        return <HistoryUI {...this.props} refresh={this.refreshList}/>
     }
 }
 

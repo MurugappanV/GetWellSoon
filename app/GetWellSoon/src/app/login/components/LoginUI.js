@@ -46,7 +46,7 @@ export default class LoginUI extends Component {
                         isSignOut: false,
                     });
                 }).catch(error => {
-                    this.renderMessage('Unable to get user details')
+                    // this.renderMessage('Unable to get user details')
                     this.setState({
                         confirmResult: null,
                     });

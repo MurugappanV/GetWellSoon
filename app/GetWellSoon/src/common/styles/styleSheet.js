@@ -88,6 +88,9 @@ export const basicCompStyles = StyleSheet.create({
     bgBaseColor: {
         backgroundColor: colors.BG_BASE_COLOR
     },
+    bgDisableColor: {
+        backgroundColor: colors.DISABLE_COLOR
+    },
     bgBaseColorLight: {
         backgroundColor: colors.BG_BASE_COLOR_LIGHT
     },

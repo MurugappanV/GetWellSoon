@@ -1,5 +1,5 @@
 import React, {PureComponent} from "react";
-import { View, Text, TextInput, TouchableOpacity, Image, KeyboardAvoidingView, ScrollView, ActivityIndicator } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, Image, KeyboardAvoidingView, ScrollView, ActivityIndicator, Alert } from 'react-native';
 import DatePicker from 'react-native-datepicker';
 import { pickImage } from "../../common/utils/imagePicker";
 import { basicStyles , basicCompStyles , width25pc, width20pc } from "../../../common/styles/styleSheet";
@@ -117,6 +117,18 @@ export default class UserDetailUI extends PureComponent {
                 <Text style={[basicStyles.textSmallerLink, basicCompStyles.defaultPadding]}>{"Uploading image ..."}</Text>
             </View>
         }
+    }
+
+    signOut = () => {
+        Alert.alert(
+            'Confirmation',
+            `Do you want to Sign out ?`,
+            [
+              {text: 'No', onPress: () => {}},
+              {text: 'Yes', onPress: () => {this.props.navigation.navigate("Login", {isSignOut: true})}},
+            ],
+            { cancelable: true }
+        )
     }
 
     render() {
@@ -242,7 +254,7 @@ export default class UserDetailUI extends PureComponent {
             <TouchableOpacity style={[basicCompStyles.bgBaseColor, basicCompStyles.defaultPadding, basicCompStyles.defaultMarginTB, basicCompStyles.spacingMarginT, {height: 40, borderRadius: 20 }]} onPress={this.saveManualEntry} >
                 <Text style={[basicStyles.textWhiteSmall, basicCompStyles.alignTextCenter]}>{"Save"}</Text>
             </TouchableOpacity> 
-            <TouchableOpacity onPress={signOut} > 
+            <TouchableOpacity onPress={this.signOut} > 
                 <Text style={[basicStyles.textSmallerLink, basicCompStyles.aliginSelfC, {paddingBottom: 10}]}>{"Sign Out"}</Text>
             </TouchableOpacity> 
         </View>

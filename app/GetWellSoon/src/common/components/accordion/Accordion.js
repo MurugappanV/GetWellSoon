@@ -18,6 +18,8 @@ class Accordion extends PureComponent {
             keyExtractor={(item, index) => item.title.id}
             renderItem={this.renderItemCollapsible}
             style={this.props.style}
+            onRefresh={this.props.refresh}
+            refreshing={false}
         />
     }
 }

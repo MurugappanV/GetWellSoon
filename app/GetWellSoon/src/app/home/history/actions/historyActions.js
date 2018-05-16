@@ -1,7 +1,7 @@
 import * as types from '../../../common/redux/types';
 import client, {wsClient} from '../../../common/redux/apollo/client';
-import {userPrescriptionsQuery, userPrescriptionsSubscription} from '../graphql/quries';
-import { mapPrescriptionRawDetails, addPrescriptionSubstripionDetails, mapPrescriptionToSectionList } from '../../../common/redux/manipulations/prescriptionConvertor';
+import {userPrescriptionsQuery, userPrescriptionsSubscription, updateUserPrescription} from '../graphql/quries';
+import { mapPrescriptionRawDetails, addPrescriptionSubstripionDetails, mapPrescriptionToSectionList, updatePrescriptionDetails } from '../../../common/redux/manipulations/prescriptionConvertor';
 // import 
 
 export function setPrescriptionList(userId) {
@@ -42,5 +42,25 @@ export function subscribe(dispatch, getState, userId) {
 export function clearPrescriptionList() {
     return (dispatch, getState) => {
         dispatch({type: types.CLEAR_PRESCRIPTION_LIST});
+    }
+}
+
+export function cancelPrescription(presId) {
+    return (dispatch, getState) => {
+        console.log("cancel pres - " , presId)
+        dispatch({type: types.PRESCRIPTION_LIST_LOADING});
+        client.mutate({
+            mutation: updateUserPrescription,
+            variables: {id: presId}
+        }).then((resp) => {
+            if (resp.data != null) {
+                dispatch({type: types.SET_PRESCRIPTION_LIST, data: mapPrescriptionToSectionList(updatePrescriptionDetails(getState().prescriptionList, resp.data))});
+                dispatch({type: types.PRESCRIPTION_LIST_LOADED});
+            } else {
+                dispatch({type: types.PRESCRIPTION_LIST_ERROR});
+            }
+        }).catch( (exception) => {
+            dispatch({ type: types.EXCEPTION, exception: exception});
+        });
     }
 }

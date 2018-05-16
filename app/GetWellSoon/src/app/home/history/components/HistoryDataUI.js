@@ -10,11 +10,11 @@ import PresLogListUI from "./PresLogListUI";
 class HistoryDataUI extends PureComponent {
     renderHeader = (data, isCollapsed) => <PresItemUI title={data.title}/>
         
-    renderContent = (data, isCollapsed) => <PresLogListUI list={data.data} title={data.title}/>
+    renderContent = (data, isCollapsed) => <PresLogListUI list={data.data} title={data.title} cancelPres={this.props.cancelPrescription}/>
     
     render() {
         return <View style={basicStyles.tabContainer}>
-            <Accordion style={[basicStyles.sectionContainer, basicCompStyles.fullSize]} data={this.props.prescriptionData.prescriptionList}  itemHeader={this.renderHeader.bind(this)} itemContent={this.renderContent.bind(this)} />
+            <Accordion style={[basicStyles.sectionContainer, basicCompStyles.fullSize]} data={this.props.prescriptionData.prescriptionList}  itemHeader={this.renderHeader.bind(this)} itemContent={this.renderContent.bind(this)} refresh={this.props.refresh}/>
         </View>
     }
 }

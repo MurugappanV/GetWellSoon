@@ -31,3 +31,4 @@ export const PLACEHOLDER_COLOR = DARK_BLUE;
 export const PROGRESS_BAR_COLOR = ORANGE;
 export const LIGHT_LIST_COLOR = WHITE;
 export const HIGHLIGHT_COLOR = LIGHT_ORANGE;
+export const DISABLE_COLOR = GREY;

@@ -86,3 +86,30 @@ export const addPrescriptionSubstripionDetails = (inData, newData) => {
         };
     }
 }
+
+export const updatePrescriptionDetails = (inData, newData) => {
+    return {
+        prescriptionList: inData.prescriptionList.map(presObj => {
+            if(presObj.title.orderId == newData.updatePrescription.orderId) {
+                return {
+                    ...newData.updatePrescription,
+                    logs: newData.updatePrescription.logs.map(logObj => {
+                        return {
+                            ...logObj,
+                            name: logObj.user.name
+                        }
+                    })
+                }
+            } else {
+                return {
+                    ...presObj.title,
+                    logs: presObj.title.logs.map(logObj => {
+                        return {
+                            ...logObj,
+                        }
+                    })
+                }
+            }
+        })
+    };
+}

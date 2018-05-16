@@ -1,5 +1,5 @@
 import React, {PureComponent} from "react";
-import {View, Image, Text, ScrollView, TextInput, TouchableOpacity} from 'react-native';
+import {View, Image, Text, ScrollView, TextInput, TouchableOpacity, Alert} from 'react-native';
 import colors from "../../../common/constants/colors";
 import { basicStyles, basicCompStyles } from "../../../common/styles/styleSheet";
 import CheckBox from 'react-native-checkbox';
@@ -35,7 +35,17 @@ export default class ConfirmationUI extends PureComponent {
             Toast.show("Please enter delivery address", Toast.LONG)
             this.refs.addressInput.focus()
         } else {
-            this.props.savePrescription(this.props.prescriptionUrl, !this.state.needPriceConfirmation, this.state.message, this.state.address, this.state.name, this.state.deliveryPhoneNo);
+            Alert.alert(
+                'Order confirmation',
+                `Are you Sure place the order`,
+                [
+                  {text: 'Cancel', onPress: () => {}},
+                  {text: 'OK', onPress: () => {
+                        this.props.savePrescription(this.props.prescriptionUrl, !this.state.needPriceConfirmation, this.state.message, this.state.address, this.state.name, this.state.deliveryPhoneNo);
+                  }},
+                ],
+                { cancelable: true }
+            )
             // save in db
         }
     }

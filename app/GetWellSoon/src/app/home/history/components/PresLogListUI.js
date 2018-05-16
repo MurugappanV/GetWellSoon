@@ -1,5 +1,5 @@
 import React, {PureComponent} from "react";
-import {View, Image, Text, FlatList, TouchableOpacity} from 'react-native';
+import {View, Image, Text, FlatList, TouchableOpacity, Alert} from 'react-native';
 import { basicStyles, basicCompStyles } from "../../../../common/styles/styleSheet";
 import PresLogUI from "./PresLogUI";
 
@@ -13,12 +13,45 @@ class PresLogListUI extends PureComponent {
         }
     }
 
-    // renderCancel = (status) => {
+    cancelPres = (status, id, orerid) => {
+        if(status == "PLACED") {
+            Alert.alert(
+                'Confirm cancellation',
+                `Are you Sure cancel order no ${orerid}`,
+                [
+                  {text: 'Cancel', onPress: () => {}},
+                  {text: 'OK', onPress: () => this.props.cancelPres(id)},
+                ],
+                { cancelable: false }
+            )
+        } else {
+            Alert.alert(
+                'Sorry',
+                'Order already processed. Please contact pharmacy',
+                [
+                  {text: 'OK', onPress: () => {}},
+                ],
+                { cancelable: true }
+            )
+        }
+    }
 
-    // }
+    alert = (title, message) => {
+        Alert.alert(
+            'Alert Title',
+            'My Alert Msg',
+            [
+              {text: 'Ask me later', onPress: () => console.log('Ask me later pressed')},
+              {text: 'Cancel', onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
+              {text: 'OK', onPress: () => console.log('OK Pressed')},
+            ],
+            { cancelable: false }
+        )
+    }
 
     render() {
         const data = this.props.title;
+        const buttonColor = data.status != "PLACED"? basicCompStyles.bgDisableColor : basicCompStyles.bgBaseColor
         return <View>
             <View style={[basicStyles.presSubItemContainer, basicCompStyles.whiteBgColor, {borderRadius: 5, marginLeft: 30, marginRight: 10, marginBottom: 5, elevation: 5}]}>
                 <View style={[basicStyles.presSubInfoContainer, {flex: 1}]}>
@@ -33,7 +66,7 @@ class PresLogListUI extends PureComponent {
                         {this.renderBill(data.billUrl)}
                     </View>
                     <View style={[basicCompStyles.flexRowNC, {flex: 1}]}>
-                        <TouchableOpacity style={[basicCompStyles.bgBaseColor, {margin: 5, marginLeft: 20, marginRight: 20, padding: 5, height: 30, borderRadius: 20, elevation: 10, flex: 1}]} onPress={() => {}} >
+                        <TouchableOpacity style={[buttonColor, {margin: 5, marginLeft: 20, marginRight: 20, padding: 5, height: 30, borderRadius: 20, elevation: 10, flex: 1}]} onPress={() => {this.cancelPres(data.status, data.id, data.orderId)}} >
                             <Text style={[basicStyles.textWhiteSmaller, basicCompStyles.alignTextCenter]}>{"  Cancel  "}</Text>
                         </TouchableOpacity>
                     </View>
