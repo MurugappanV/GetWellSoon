@@ -18,6 +18,7 @@ class Order extends PureComponent {
 
 function mapStateToProps(state) {
     return {
+        userId: state.userId,
         prescriptionUrl: state.prescriptionUrl,
         presUploadStatus: state.prescriptionUploadStatus
     }

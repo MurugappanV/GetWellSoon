@@ -52,6 +52,15 @@ class OrderUI extends PureComponent {
         }
     }
 
+    confirmation = () => {
+        this.props.clearPrescription()
+        if(this.props.userId != null) {
+            this.props.navigation.navigate("Confirmation")
+        } else {
+            this.props.navigation.navigate("Login", {redirectTo: "Confirmation"})
+        }
+    }
+
     renderButton = (uploadStatus) => {
         if(uploadStatus == 0 || uploadStatus == generalConstants.ERROR) {
             return <TouchableOpacity style={[basicCompStyles.bgBaseColor, basicCompStyles.defaultPadding, basicCompStyles.smallSpacingMarginT, {height: 40, borderRadius: 20, elevation: 10 }]} onPress={this.selectImage} >
@@ -59,10 +68,7 @@ class OrderUI extends PureComponent {
             </TouchableOpacity>
         } else if(uploadStatus == generalConstants.LOADED) {
             return <View>
-                <TouchableOpacity style={[basicCompStyles.bgBaseColor, basicCompStyles.defaultPadding, basicCompStyles.smallSpacingMarginT, {height: 40, borderRadius: 20, elevation: 10 }]} onPress={() => {
-                        this.props.clearPrescription()
-                        this.props.navigation.navigate("Confirmation")
-                    }} >
+                <TouchableOpacity style={[basicCompStyles.bgBaseColor, basicCompStyles.defaultPadding, basicCompStyles.smallSpacingMarginT, {height: 40, borderRadius: 20, elevation: 10 }]} onPress={this.confirmation} >
                     <Text style={[basicStyles.textWhiteSmall, basicCompStyles.alignTextCenter]}>{"Order medicine"}</Text>
                 </TouchableOpacity>
                 <TouchableOpacity style={basicCompStyles.defaultPadding} onPress={() => {

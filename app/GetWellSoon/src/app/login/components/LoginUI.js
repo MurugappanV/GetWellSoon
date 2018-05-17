@@ -11,6 +11,7 @@ export default class LoginUI extends Component {
         super(props);
         this.unsubscribe = null;
         let isSignOut = false;
+        let redirectTo = "Details";
         this.renderMessage = this.renderMessage.bind(this)
         this.signIn = this.signIn.bind(this)
         this.signOut = this.signOut.bind(this)
@@ -28,10 +29,14 @@ export default class LoginUI extends Component {
                 this.signOut(true);
                 isSignOut = true;
             }
+            if (params && params.redirectTo) {
+                redirectTo = params.redirectTo
+            }
         }
         this.state = {
             confirmResult: null,
             isSignOut: isSignOut,
+            redirectTo: redirectTo
         };
         this.navigate(isSignOut, props.graphcoolTokenStatus)
     }
@@ -138,7 +143,7 @@ export default class LoginUI extends Component {
     navigate = (isSignOut, tokenStatus) => {
         if(!isSignOut && tokenStatus == 2) {
             this.renderMessage('Login successfull')
-            this.props.navigation.navigate('Details');
+            this.props.navigation.navigate(this.state.redirectTo);
         }
     }
 

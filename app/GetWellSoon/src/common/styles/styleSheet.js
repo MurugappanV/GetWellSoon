@@ -37,6 +37,9 @@ const sizes = StyleSheet.create({
     width20pc: {
         width: width20pc
     },
+    width40pc: {
+        width: width40pc
+    },
     subListImagewidth: {
         width: 55
     },
@@ -230,6 +233,9 @@ export const basicStyles = {
         sizes.fullViewSize,
         basicCompStyles.bgBaseColor
     ],
+    deviceFullWidth: [
+        sizes.fullDeviceWidth
+    ],
     deviceFullViewLight: [
         sizes.fullViewSize,
         basicCompStyles.bgBaseColorLight
@@ -275,6 +281,11 @@ export const basicStyles = {
     textSmall: [
         basicCompStyles.normalTextColor,
         basicCompStyles.seperateItemPadding,
+        compStyles.mainHeaderTextSmall,
+        fonts.default
+    ],
+    textSmallSimple: [
+        basicCompStyles.normalTextColor,
         compStyles.mainHeaderTextSmall,
         fonts.default
     ],
