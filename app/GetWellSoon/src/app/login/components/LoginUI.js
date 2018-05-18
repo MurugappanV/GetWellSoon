@@ -21,17 +21,19 @@ export default class LoginUI extends Component {
         this.navigate = this.navigate.bind(this)
         console.log("in const")
         console.log("in rec props")
+        const { params } = props.navigation.state;
+        if (params && params.redirectTo) {
+            redirectTo = params.redirectTo
+        }
         if (firebase.auth().currentUser) {
             console.log("has user")
-            const { params } = props.navigation.state;
+            
             if (params && params.isSignOut) {
                 console.log("has signing out")
                 this.signOut(true);
                 isSignOut = true;
             }
-            if (params && params.redirectTo) {
-                redirectTo = params.redirectTo
-            }
+            
         }
         this.state = {
             confirmResult: null,

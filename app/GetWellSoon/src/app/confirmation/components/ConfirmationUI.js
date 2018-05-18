@@ -3,6 +3,7 @@ import {View, Image, Text, ScrollView, TextInput, TouchableOpacity, Alert} from 
 import colors from "../../../common/constants/colors";
 import { basicStyles, basicCompStyles } from "../../../common/styles/styleSheet";
 import CheckBox from 'react-native-checkbox';
+import Toast from 'react-native-simple-toast';
 
 
 export default class ConfirmationUI extends PureComponent {
